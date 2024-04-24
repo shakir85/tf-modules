@@ -32,3 +32,10 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Other
+*tfstate
+proxmox_api.auto.tfvars
+.terraform*
+terraform*
+.pem

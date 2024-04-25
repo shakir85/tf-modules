@@ -7,6 +7,7 @@ but always avoid adding them in plain text.
 
 // ********** providers.tf **********
 terraform {
+  required_version = ">= 1.5.7"
   backend "" {
   }
 

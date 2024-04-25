@@ -49,6 +49,7 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
   }
 
   initialization {
+    user_data_file_id = proxmox_virtual_environment_file.cloud_config.id
     # Available attributes:
     # datastore_id      = "local-lvm"
     # interface         = "ide2"
@@ -56,14 +57,9 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
     # user_data_file_id = "sdd:snippets/cloud-config.yaml"
     ip_config {
       ipv4 {
-        address = var.ipv4_address
-        # 'gateway' must be omitted because it's optional, and
-        # it doesn't work when `address = "ducp"`
-        # gateway = ""
+        address = "dhcp"
       }
     }
-
-    user_data_file_id = proxmox_virtual_environment_file.cloud_config.id
   }
 
   network_device {

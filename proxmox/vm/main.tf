@@ -11,7 +11,7 @@ data "local_file" "ssh_public_key" {
   filename = var.ssh_public_key_path
 }
 
-resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
+resource "proxmox_virtual_environment_vm" "vm_resource" {
   name        = var.hostname
   description = var.description
   tags        = var.tags
@@ -79,6 +79,10 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
 }
 
 resource "proxmox_virtual_environment_file" "cloud_config" {
+  /*
+  * This section sets initial configurations required for the VM.
+  * Use Ansible for additional configs/installs.
+  */
   content_type = "snippets"
   datastore_id = var.disk_name
   node_name    = var.proxmox_node_name
@@ -112,13 +116,15 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
   }
 }
 
-// The following is a workaround for a limitation in Proxmox, which doesn't support
-// writing cloud images with a `.qcow2` extension. This locals block extracts
-// the file name from the URL. The subsequent resource appends `.img` to it.
-// The result will always be an image file name with the `.img` extension, for example,
-// `foo.qcow2.img`. If you download an actual `.img` file, it will be stored as `foo.img.img`.
-// For more info, refer to the provider's docs:
-//  https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_download_file#file_name
+/* 
+ * The following blocks are workaround for a limitation in Proxmox, which doesn't support
+ * writing cloud images with a `.qcow2` extension. This locals block extracts
+ * the file name from the URL. The subsequent resource appends `.img` to it.
+ * The result will always be an image file name with the `.img` extension, for example,
+ * `foo.qcow2.img`. If you download an actual `.img` file, it will be stored as `foo.img.img`.
+ *  For more info, refer to the provider's docs:
+ *  https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_download_file#file_name
+ */
 locals {
   url      = var.cloud_image_url
   url_list = split("/", var.cloud_image_url)

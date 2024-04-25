@@ -1,8 +1,13 @@
 terraform {
+  required_version = ">= 1.5.7"
   required_providers {
     proxmox = {
       source  = "bpg/proxmox"
       version = "0.54.0"
+    }
+    local = {
+      source  = "hashicorp/local"
+      version = ">= 2.5.1"
     }
   }
 }
@@ -126,7 +131,6 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
  *  https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_download_file#file_name
  */
 locals {
-  url      = var.cloud_image_url
   url_list = split("/", var.cloud_image_url)
   filename = element(local.url_list, length(local.url_list) - 1)
 }

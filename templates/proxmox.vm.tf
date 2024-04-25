@@ -7,6 +7,7 @@ but always avoid adding them in plain text.
 
 // ********** providers.tf **********
 terraform {
+  required_version = ">= 1.5.7"
   backend "" {
   }
 
@@ -14,6 +15,10 @@ terraform {
     proxmox = {
       source  = "bpg/proxmox"
       version = "0.54.0"
+    }
+    local = {
+      source  = "hashicorp/local"
+      version = ">= 2.5.1"
     }
   }
 }

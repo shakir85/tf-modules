@@ -56,10 +56,7 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
     # user_data_file_id = "sdd:snippets/cloud-config.yaml"
     ip_config {
       ipv4 {
-        address = var.ipv4_address
-        # 'gateway' must be omitted because it's optional, and
-        # it doesn't work when `address = "ducp"`
-        # gateway = ""
+        address = "dhcp"
       }
     }
 

@@ -43,7 +43,7 @@ provider "proxmox" {
 
 // ********** root.tf or main.tf **********
 module "" {
-  source              = "github.com/shakir85/terraform_modules/proxmox/vm"
+  source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=<RELEADE_ID>"
   proxmox_node_name   = ""
   disk_name           = ""
   ipv4_address        = "/24"

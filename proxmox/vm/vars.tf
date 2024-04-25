@@ -48,6 +48,11 @@ variable "disk_interface" {
   description = "Storage disk interface. Default value: `scsi0`."
 }
 
+variable "ipv4_address" {
+  type        = string
+  description = "IPv4 in the IP/CIDR format. For example: 192.168.5.25/24."
+}
+
 variable "network_interface" {
   default     = "vmbr0"
   type        = string

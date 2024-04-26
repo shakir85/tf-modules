@@ -59,10 +59,9 @@ variable "cloud_image_name" {
   description = "Cloud image name. Must end with `.img` extension."
 }
 
-variable "download_file_content_type" {
-  default     = "iso"
+variable "cloud_image_storage" {
   type        = string
-  description = "Cloud image content type. Must be `iso` for VM images."
+  description = "Storage pool (disk) name where the cloud image iso, img, qcow... etc is stored."
 }
 
 variable "ssh_public_key_path" {

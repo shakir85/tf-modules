@@ -46,10 +46,10 @@ module "" {
   source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=<RELEADE_ID>"
   proxmox_node_name   = ""
   disk_name           = ""
-  ipv4_address        = "/24"
-  cloud_image_url     = ""
   ssh_public_key_path = ""
   username            = ""
   hostname            = ""
   timezone            = ""
+  cloud_image_storage = ""
+  cloud_image_name      = ""
 }

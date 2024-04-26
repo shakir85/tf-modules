@@ -60,7 +60,7 @@ variable "cloud_image_name" {
 }
 
 variable "cloud_image_storage" {
-  type = string
+  type        = string
   description = "Storage pool (disk) name where the cloud image iso, img, qcow... etc is stored."
 }
 variable "download_file_content_type" {

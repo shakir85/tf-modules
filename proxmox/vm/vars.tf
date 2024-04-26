@@ -59,6 +59,10 @@ variable "cloud_image_name" {
   description = "Cloud image name. Must end with `.img` extension."
 }
 
+variable "cloud_image_storage" {
+  type = string
+  description = "Storage pool (disk) name where the cloud image iso, img, qcow... etc is stored."
+}
 variable "download_file_content_type" {
   default     = "iso"
   type        = string

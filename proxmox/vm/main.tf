@@ -44,7 +44,7 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
     # size              = 8
     # ssd               = false
     datastore_id = var.disk_name
-    file_id      = proxmox_virtual_environment_download_file.cloud_image_file.id
+    file_id      = "${var.disk_name}:iso/${var.cloud_image_name}"
     interface    = var.disk_interface
   }
 
@@ -116,26 +116,4 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
 
     file_name = "cloud-config.yaml"
   }
-}
-
-/* 
- * The following blocks are workaround for a limitation in Proxmox, which doesn't support
- * writing cloud images with a `.qcow2` extension. This locals block extracts
- * the file name from the URL. The subsequent resource appends `.img` to it.
- * The result will always be an image file name with the `.img` extension, for example,
- * `foo.qcow2.img`. If you download an actual `.img` file, it will be stored as `foo.img.img`.
- *  For more info, refer to the provider's docs:
- *  https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_download_file#file_name
- */
-locals {
-  url_list = split("/", var.cloud_image_url)
-  filename = element(local.url_list, length(local.url_list) - 1)
-}
-
-resource "proxmox_virtual_environment_download_file" "cloud_image_file" {
-  content_type = var.download_file_content_type
-  datastore_id = var.disk_name
-  node_name    = var.proxmox_node_name
-  url          = var.cloud_image_url
-  file_name    = "${local.filename}.img"
 }

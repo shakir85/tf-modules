@@ -3,7 +3,7 @@ variable "cloud_image_url" {
   description = "URL for downloading the cloud image."
 }
 
-variable "disk_name" {
+variable "storage_pool" {
   type        = string
   description = "Proxmox storage pool (i.e. disk name) where the cloud image will be downloaded."
 }

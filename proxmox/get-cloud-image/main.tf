@@ -28,7 +28,7 @@ locals {
 
 resource "proxmox_virtual_environment_download_file" "cloud_image_file" {
   content_type = "iso"
-  datastore_id = var.disk_name
+  datastore_id = var.storage_pool
   file_name    = "${local.filename}.img"
   node_name    = var.proxmox_node_name
   url          = var.cloud_image_url

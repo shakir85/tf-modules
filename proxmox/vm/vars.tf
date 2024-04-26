@@ -54,14 +54,14 @@ variable "network_interface" {
   description = "Default node's network device bridge. Default value: `vmbr0`."
 }
 
-variable "cloud_image_name" {
-  type        = string
-  description = "Cloud image name. Must end with `.img` extension."
-}
-
-variable "cloud_image_storage" {
-  type        = string
-  description = "Storage pool (disk) name where the cloud image iso, img, qcow... etc is stored."
+variable "cloud_image_info" {
+  type        = list(string)
+  description = <<EOF
+  A list of strings as the following: 
+  index 0 for storage pool (disk) name where the cloud image iso, img, qcow... etc is stored.
+  index 1 for cloud-image file name (it must end with `.img` extension)
+  For example: `cloud_image_info: ["local-lvm", "debian-12-generic.qcow2.img"]`.
+  EOF
 }
 
 variable "ssh_public_key_path" {

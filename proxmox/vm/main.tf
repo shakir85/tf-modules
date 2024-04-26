@@ -44,7 +44,7 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
     # size              = 8
     # ssd               = false
     datastore_id = var.disk_name
-    file_id      = "${var.cloud_image_storage}:iso/${var.cloud_image_name}"
+    file_id      = "${element(var.cloud_image_info, 0)}:iso/${element(var.cloud_image_info, 1)}"
     interface    = var.disk_interface
   }
 

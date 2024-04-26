@@ -54,9 +54,9 @@ variable "network_interface" {
   description = "Default node's network device bridge. Default value: `vmbr0`."
 }
 
-variable "cloud_image_url" {
+variable "cloud_image_name" {
   type        = string
-  description = "Cloud image URL. For example, Ubuntu Jammy: `https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img`."
+  description = "Cloud image name. Must end with `.img` extension."
 }
 
 variable "download_file_content_type" {

@@ -50,5 +50,5 @@ module "" {
   username            = ""
   hostname            = ""
   timezone            = ""
-  cloud_image_info    = ["sdc", "debian-12-generic-amd64.qcow2.img"]
+  cloud_image_info    = ["STORAGE_POOL", "CLOUD_IMAGE_FILE_NAME"]
 }

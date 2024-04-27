@@ -37,6 +37,24 @@ variable "enable_guest_agent" {
   description = "Whether to enable the QEMU guest agent. You must install `qemu-guest-agent` - it could be installed via cloud-init. Read the 'Qemu guest agent' section in bpg/proxmox docs first."
 }
 
+variable "cores" {
+  default     = 1
+  type        = number
+  description = "The number of CPU cores."
+}
+
+variable "sockets" {
+  default     = 1
+  type        = number
+  description = "The number of CPU sockets."
+}
+
+variable "memory" {
+  default     = 512
+  type        = number
+  description = "The dedicated memory in megabytes"
+}
+
 variable "disk_name" {
   type        = string
   description = "Proxmox storage pool (disk name) where the VM's disk should be stored. The disk must support the Snippet storage type as it will be used for other resources."

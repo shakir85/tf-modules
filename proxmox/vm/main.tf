@@ -31,6 +31,15 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
     # type    = "virtio"
   }
 
+  cpu {
+    cores   = var.cores
+    sockets = var.sockets
+  }
+
+  memory {
+    dedicated = var.memory
+  }
+
   disk {
     # Available attributes:
     # aio               = "io_uring"

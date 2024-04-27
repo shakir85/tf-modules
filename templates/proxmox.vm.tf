@@ -35,15 +35,16 @@ provider "proxmox" {
     private_key = file("/path/to/id_rsa")
     username    = ""
     node {
-      name    = ""
-      address = ""
+      name    = "" // typically pve
+      address = "" // IPv4 without CIDR
     }
   }
 }
 
 // ********** root.tf or main.tf **********
 module "" {
-  source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=<RELEADE_ID>"
+  // Required Variables
+  source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=RELEADE_ID"
   proxmox_node_name   = ""
   disk_name           = ""
   ssh_public_key_path = ""
@@ -51,4 +52,16 @@ module "" {
   hostname            = ""
   timezone            = ""
   cloud_image_info    = ["STORAGE_POOL", "CLOUD_IMAGE_FILE_NAME"]
+  #
+  // Optional Variables (default values presented below)
+  # description   = "Managed by Terraform"
+  # tags          = ["terraform"]
+  # cores         = 1
+  # sockets       = 1
+  # memory        = 512 # In MBs
+  # user_password = "changeme" # You'll need to change this password upon login
+  #
+  # See provider's docs: bpg/proxmox before change the below optional vars
+  # disk_interface    = "scsi0"
+  # network_interface = "vmbr0"
 }

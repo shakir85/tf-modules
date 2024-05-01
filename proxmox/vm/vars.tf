@@ -25,10 +25,10 @@ variable "username" {
   description = "Default user. This will be a sudo user and have SSH login access."
 }
 
-variable "user_password" {
+variable "temp_user_password" {
   default     = "changeme"
   type        = string
-  description = "User login password. This password is used only for logging in from the Proxmox UI console. Upon the first login, a prompt to change the password will be presented."
+  description = "Temorary login password. Upon the first login, a prompt to change the password will be presented."
 }
 
 variable "enable_guest_agent" {

@@ -54,12 +54,12 @@ module "" {
   cloud_image_info    = ["STORAGE_POOL", "CLOUD_IMAGE_FILE_NAME"]
   #
   // Optional Variables (default values presented below)
-  # description   = "Managed by Terraform"
-  # tags          = ["terraform"]
-  # cores         = 1
-  # sockets       = 1
-  # memory        = 512 # In MBs
-  # user_password = "changeme" # You'll need to change this password upon login
+  # description        = "Managed by Terraform"
+  # tags               = ["terraform"]
+  # cores              = 1
+  # sockets            = 1
+  # memory             = 512 # In MBs
+  # temp_user_password = "changeme" # You'll need to change this password upon login
   #
   # See provider's docs: bpg/proxmox before change the below optional vars
   # disk_interface    = "scsi0"

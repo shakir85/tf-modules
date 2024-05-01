@@ -117,7 +117,7 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
         sudo: ALL=(ALL) NOPASSWD:ALL
     chpasswd:
       list: |
-        ${var.username}:${var.user_password}
+        ${var.username}:${var.temp_user_password}
     runcmd:
       - timedatectl set-timezone ${var.timezone}
       - echo "done" > /tmp/cloud-config.done

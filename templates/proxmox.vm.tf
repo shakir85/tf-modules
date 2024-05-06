@@ -52,6 +52,7 @@ module "" {
   hostname            = ""
   timezone            = ""
   cloud_image_info    = ["STORAGE_POOL", "CLOUD_IMAGE_FILE_NAME"]
+  disk_size           = ""
   #
   // Optional Variables (default values presented below)
   # description        = "Managed by Terraform"

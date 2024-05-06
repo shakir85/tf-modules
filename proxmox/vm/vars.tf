@@ -60,6 +60,11 @@ variable "disk_name" {
   description = "Proxmox storage pool (disk name) where the VM's disk should be stored. The disk must support the Snippet storage type as it will be used for other resources."
 }
 
+variable "disk_size" {
+  type        = string
+  description = "Disk size in Gigabytes"
+}
+
 variable "disk_interface" {
   default     = "scsi0"
   type        = string

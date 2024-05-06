@@ -50,11 +50,11 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
     # iothread          = false
     # path_in_datastore = "101/vm-101-disk-0.qcow2"
     # replicate         = true
-    # size              = 8
     # ssd               = false
     datastore_id = var.disk_name
     file_id      = "${element(var.cloud_image_info, 0)}:iso/${element(var.cloud_image_info, 1)}"
     interface    = var.disk_interface
+    size         = var.disk_size
   }
 
   initialization {

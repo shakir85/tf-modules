@@ -42,7 +42,7 @@ provider "proxmox" {
 }
 
 // ********** root.tf or main.tf **********
-module "" {
+module "MODULE_NAME" {
   // Required Variables
   source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=RELEADE_ID"
   proxmox_node_name   = ""
@@ -65,4 +65,9 @@ module "" {
   # See provider's docs: bpg/proxmox before change the below optional vars
   # disk_interface    = "scsi0"
   # network_interface = "vmbr0"
+}
+
+// Print any output block from the main module
+output "module_outputs" {
+  value = module.MODULE_NAME
 }

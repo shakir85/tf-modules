@@ -126,3 +126,7 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
     file_name = "cloud-config.yaml"
   }
 }
+
+output "print_temp_password" {
+  value = "Your login password is: ${var.temp_user_password}\nYou will be required to change the password on your first login."
+}

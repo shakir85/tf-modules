@@ -16,6 +16,12 @@ data "local_file" "ssh_public_key" {
   filename = var.ssh_public_key_path
 }
 
+resource "random_string" "random_cloud_init_id" {
+  length           = 4
+  special          = false
+  upper = false
+}
+
 resource "proxmox_virtual_environment_vm" "vm_resource" {
   name        = var.hostname
   description = var.description
@@ -123,7 +129,7 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
       - echo "done" > /tmp/cloud-config.done
     EOF
 
-    file_name = "cloud-config.yaml"
+    file_name = "cloud-init-config-${var.hostname}-${random_string.random_cloud_init_id.result}.yaml"
   }
 }
 

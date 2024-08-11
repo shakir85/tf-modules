@@ -13,6 +13,7 @@
 |------|---------|
 | <a name="provider_local"></a> [local](#provider\_local) | >= 2.5.1 |
 | <a name="provider_proxmox"></a> [proxmox](#provider\_proxmox) | 0.54.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | n/a |
 
 ## Modules
 
@@ -24,6 +25,7 @@ No modules.
 |------|------|
 | [proxmox_virtual_environment_file.cloud_config](https://registry.terraform.io/providers/bpg/proxmox/0.54.0/docs/resources/virtual_environment_file) | resource |
 | [proxmox_virtual_environment_vm.vm_resource](https://registry.terraform.io/providers/bpg/proxmox/0.54.0/docs/resources/virtual_environment_vm) | resource |
+| [random_string.random_cloud_init_id](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 | [local_file.ssh_public_key](https://registry.terraform.io/providers/hashicorp/local/latest/docs/data-sources/file) | data source |
 
 ## Inputs
@@ -32,6 +34,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_cloud_image_info"></a> [cloud\_image\_info](#input\_cloud\_image\_info) | A list of strings as the following: <br>  index 0 for storage pool (disk) name where the cloud image iso, img, qcow... etc is stored.<br>  index 1 for cloud-image file name (it must end with `.img` extension)<br>  For example: `cloud_image_info: ["local-lvm", "debian-12-generic.qcow2.img"]`. | `list(string)` | n/a | yes |
 | <a name="input_cores"></a> [cores](#input\_cores) | The number of CPU cores. | `number` | `1` | no |
+| <a name="input_cpu_type"></a> [cpu\_type](#input\_cpu\_type) | The emulated CPU type. Some VMs need certain types of CPUs. See available values in https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_vm#host | `string` | `"qemu64"` | no |
 | <a name="input_description"></a> [description](#input\_description) | VM resource description. | `string` | `"Managed by Terraform"` | no |
 | <a name="input_disk_interface"></a> [disk\_interface](#input\_disk\_interface) | Storage disk interface. Default value: `scsi0`. | `string` | `"scsi0"` | no |
 | <a name="input_disk_name"></a> [disk\_name](#input\_disk\_name) | Proxmox storage pool (disk name) where the VM's disk should be stored. The disk must support the Snippet storage type as it will be used for other resources. | `string` | n/a | yes |
@@ -50,5 +53,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_print_temp_password"></a> [print\_temp\_password](#output\_print\_temp\_password) | n/a |
 <!-- END_TF_DOCS -->

@@ -65,6 +65,7 @@ module "MODULE_NAME" {
   # See provider's docs: bpg/proxmox before change the below optional vars
   # disk_interface    = "scsi0"
   # network_interface = "vmbr0"
+  # cpu_type          = "qemu64"
 }
 
 // Print any output block from the main module

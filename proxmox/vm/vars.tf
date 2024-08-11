@@ -96,3 +96,9 @@ variable "timezone" {
   type        = string
   description = "Timezone to be configured via `timedatectl` in cloud-init template."
 }
+
+variable "cpu_type" {
+  default     = "qemu64"
+  type        = string
+  description = "The emulated CPU type. Some VMs need certain types of CPUs. See available values in https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_vm#host"
+}

@@ -17,9 +17,9 @@ data "local_file" "ssh_public_key" {
 }
 
 resource "random_string" "random_cloud_init_id" {
-  length           = 4
-  special          = false
-  upper = false
+  length  = 4
+  special = false
+  upper   = false
 }
 
 resource "proxmox_virtual_environment_vm" "vm_resource" {
@@ -40,6 +40,7 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
   cpu {
     cores   = var.cores
     sockets = var.sockets
+    type    = var.cpu_type
   }
 
   memory {

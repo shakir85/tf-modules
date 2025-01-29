@@ -1,6 +1,6 @@
 <!-- BEGIN_TF_DOCS -->
 ## Resource
-Downloads cloud image, `.iso` image, or LXC container template which then can be used to provision a new VM/LXC resource. This module uses the generic download file resource from the bpg/proxmox provider, tailored specifically to download OS images.
+Downloads cloud image, `.iso` image, or LXC container template which then can be used to provision a new VM/LXC resource.
 
 ## Requirements
 

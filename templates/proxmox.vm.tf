@@ -42,6 +42,24 @@ provider "proxmox" {
 }
 
 // ********** root.tf or main.tf **********
+// Export the following variables as `TF_VAR_<variableName>`
+// in the current running shell session
+variable "id_rsa_pub" {
+
+}
+
+variable "pve_user" {
+
+}
+
+variable "pve_pwd" {
+
+}
+
+variable "id_rsa" {
+
+}
+
 module "MODULE_NAME" {
   // Required Variables
   source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=RELEADE_ID"

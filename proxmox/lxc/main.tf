@@ -14,13 +14,12 @@ resource "proxmox_lxc" "lxc_container" {
   ostemplate   = "${var.lxc_template_path}:vztmpl/${var.lxc_template_file}"
   password     = var.password
   unprivileged = true
+  start        = true
+  tags         = var.tags
+  swap         = var.swap
+  onboot       = true
 
-  # tags            = var.tags
-  # swap            = 0
-  # start           = true
-  # onboot          = true
-
-  // Terraform will crash without rootfs defined
+  # Terraform will crash without rootfs defined
   rootfs {
     # To allow LXC containers use 'local' pool storage, run this command on the host:
     # pvesm set local --content backup,images,iso,rootdir,snippets,vztmpl
@@ -34,7 +33,7 @@ resource "proxmox_lxc" "lxc_container" {
     ip     = var.ip_address
     # gw     = The IPv4 address belonging to the network interface's default gateway.
   }
-  
+
   # Additional LXC features. See provider docs:
   # https://registry.terraform.io/providers/Telmate/proxmox/latest/docs/resources/lxc#lxc-with-advanced-features-enabled
   #

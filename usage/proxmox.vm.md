@@ -1,11 +1,10 @@
-/*
-This is a template for using the proxmox/vm module. 
-For credentials, ensure you pass them securely. 
-Terraform supports various methods for managing credentials, 
-but always avoid adding them in plain text.
-*/
+## Proxmox VM Module Usage
 
-// ********** providers.tf **********
+This is an example for using the `proxmox/vm` module. 
+For credentials, ensure you pass them securely. 
+
+File: `providers.tf`
+```hcl
 terraform {
   required_version = ">= 1.5.7"
   backend "" {
@@ -40,10 +39,11 @@ provider "proxmox" {
     }
   }
 }
+```
 
-// ********** root.tf or main.tf **********
+File: `vars.tf`
+```hcl
 // Export the following variables as `TF_VAR_<variableName>`
-// in the current running shell session
 variable "id_rsa_pub" {
 
 }
@@ -59,7 +59,10 @@ variable "pve_pwd" {
 variable "id_rsa" {
 
 }
+```
 
+File: `main.tf`
+```hcl
 module "MODULE_NAME" {
   // Required Variables
   source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=RELEADE_ID"
@@ -90,3 +93,4 @@ module "MODULE_NAME" {
 output "module_outputs" {
   value = module.MODULE_NAME
 }
+```

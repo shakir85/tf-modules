@@ -1,9 +1,12 @@
-/*
-This is a template for using the proxmox/lxc module. 
+## Proxmox LXC Module Usage
+
+This is a template for using the `proxmox/lxc` module. 
 For credentials, ensure you pass them securely and 
 avoid adding them in plain text.
-*/
 
+File: `providers.tf`
+
+```hcl
 terraform {
   required_version = ">= 1.5.7"
   backend "" {
@@ -17,7 +20,6 @@ terraform {
   }
 }
 
-// ********** providers.tf **********
 provider "proxmox" {
   // Export the following environment variables to authenticate with proxmox:
   # export PM_API_TOKEN_ID="<username>@pam!<tokenName>"
@@ -34,9 +36,10 @@ provider "proxmox" {
   #   _capturelog = ""
   # }
 }
+```
 
-
-// ********** root.tf or main.tf **********
+File: `main.tf`
+```hcl
 module "MODULE_NAME" {
   # Required Variables
   source            = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=RELEADE_ID"
@@ -55,3 +58,4 @@ module "MODULE_NAME" {
   # host_bridge_network         = "vmbr0"
   # ip_address                  = "dhcp"
 }
+```

@@ -6,9 +6,6 @@ on:
       - opened
       - synchronize
       - reopened
-  push:
-    branches:
-      - feat/tools-pipeline
 
 jobs:
   code-lint:

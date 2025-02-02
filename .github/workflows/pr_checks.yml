@@ -11,14 +11,28 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: foo  # Replace 'foo' with the actual image name
+      image: ubuntu:latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Verify repo contents
-        run: ls -la /github/workspace
+        run: pwd; ls -l
 
-      - name: Run tests
-        run: echo "Run your tests here!"
+      - name: Install dependencies
+        run: |
+          apt-get update && apt-get install -y \
+          curl \
+          wget \
+          unzip \
+          gnupg \
+          software-properties-common \
+          git \
+          && rm -rf /var/lib/apt/lists/*
+      
+      - name: Install tflint
+        run: curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+      
+      - name: Test
+        run: tflint --version

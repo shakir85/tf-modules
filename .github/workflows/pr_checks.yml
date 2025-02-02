@@ -11,7 +11,7 @@ on:
       - feat/tools-pipeline
 
 jobs:
-  test:
+  code-lint:
     runs-on: ubuntu-latest
     container:
       image: ubuntu:latest

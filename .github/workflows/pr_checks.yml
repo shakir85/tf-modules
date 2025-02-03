@@ -17,9 +17,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Verify repo contents
-        run: pwd; ls -l
-
       - name: Install dependencies
         run: |
           apt-get update && apt-get install -y \
@@ -41,13 +38,23 @@ jobs:
           apt-get update && apt-get install terraform
       
       - name: Install Terraform Docs
-        run: # place holder
+        run: |
+          curl -Lo ./terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/download/v0.19.0/terraform-docs-v0.19.0-$(uname)-amd64.tar.gz
+          tar -xzf terraform-docs.tar.gz
+          chmod +x terraform-docs
+          mv terraform-docs /usr/local/bin/terraform-docs
 
-      - name: Check tflint version
-        run: tflint --version
-      
       - name: TF Formatting
         run: terraform fmt -recursive
 
       - name: Lint TF modules
         run: tflint --recursive
+
+      - name: Generate VM Module Docs
+        run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/vm
+
+      - name: Generate LX Module Docs
+        run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/lxc
+
+      - name: Generate Cloud-Image Module Docs
+        run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/get-cloud-image

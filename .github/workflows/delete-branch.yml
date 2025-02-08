@@ -11,6 +11,9 @@ jobs:
     if: github.event.pull_request.merged == true
 
     steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
       - name: Run Git Setup
         uses: ./.github/actions/setup-git
         with:

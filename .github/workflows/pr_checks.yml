@@ -19,6 +19,18 @@ jobs:
 
       - name: TF Formatting
         run: terraform fmt -recursive
+      
+        # Added [skip ci] commit tag below to avoid infinite CI loop
+      - name: Commit and Push Formatting Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add -A
+          git commit -m "chore: auto-format Terraform files [skip ci]" || echo "No changes to commit"
+          git push origin ${{ github.head_ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Lint TF modules
         run: tflint --recursive

@@ -20,7 +20,10 @@ jobs:
       - name: TF Formatting
         run: terraform fmt -recursive
       
-        # Added [skip ci] commit tag below to avoid infinite CI loop
+      - name: Mark Repository as Safe
+        run: git config --global --add safe.directory /__w/Terraform-Modules/Terraform-Modules
+
+      # Added [skip ci] commit tag below to avoid infinite CI loop
       - name: Commit and Push Formatting Changes
         run: |
           git config --global user.name "github-actions[bot]"

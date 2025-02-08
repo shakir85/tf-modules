@@ -1,0 +1,24 @@
+name: Delete Feature Branch After PR Merge
+
+on:
+  pull_request:
+    types:
+        - closed
+
+jobs:
+  delete-branch:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+
+    steps:
+      - name: Run Git Setup
+        uses: ./.github/actions/setup-git
+        with:
+          repo-path: /__w/Terraform-Modules/Terraform-Modules
+      
+      - name: Delete feature branch
+        run: |
+          git fetch prune
+          git push origin --delete ${{ github.head_ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

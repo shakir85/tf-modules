@@ -3,7 +3,7 @@ name: Delete Feature Branch After PR Merge
 on:
   pull_request:
     types:
-        - closed
+      - closed
 
 jobs:
   delete-branch:
@@ -21,7 +21,7 @@ jobs:
       
       - name: Delete feature branch
         run: |
-          git fetch prune
+          git fetch --prune
           git push origin --delete ${{ github.head_ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

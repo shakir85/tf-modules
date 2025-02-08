@@ -19,17 +19,17 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      - name: Run Git Setup
+        uses: ./.github/actions/setup-git
+        with:
+          repo-path: /__w/Terraform-Modules/Terraform-Modules
+
       - name: TF Formatting
         run: terraform fmt -recursive
-      
-      - name: Mark Repository as Safe
-        run: git config --global --add safe.directory /__w/Terraform-Modules/Terraform-Modules
 
-      - name: Set up Git user
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-      
+      - name: Lint TF modules
+        run: tflint --recursive
+
       - name: Commit changes
         run: |   
           git add -A
@@ -38,14 +38,35 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Lint TF modules
-        run: tflint --recursive
+  generate-docs:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/shakir85/tf-tools:latest
 
-      # - name: Generate VM Module Docs
-      #   run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/vm
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
-      # - name: Generate LX Module Docs
-      #   run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/lxc
+      - name: Run Git Setup
+        uses: ./.github/actions/setup-git
+        with:
+          repo-path: /__w/Terraform-Modules/Terraform-Modules
 
-      # - name: Generate Cloud-Image Module Docs
-      #   run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/get-cloud-image
+      - name: Generate VM Module Docs
+        run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/vm
+
+      - name: Generate LX Module Docs
+        run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/lxc
+
+      - name: Generate Cloud-Image Module Docs
+        run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/get-cloud-image
+
+      - name: Commit changes
+        run: |   
+          git add -A
+          git commit -m "chore: update Terraform docs [skip ci]" || echo "No changes to commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git ${{ github.head_ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

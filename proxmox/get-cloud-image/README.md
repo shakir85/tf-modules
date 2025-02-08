@@ -1,20 +1,17 @@
 <!-- BEGIN_TF_DOCS -->
-## Resource
-Downloads cloud image, `.iso` image, or LXC container template which then can be used to provision a new VM/LXC resource.
-
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_local"></a> [local](#requirement\_local) | >= 2.5.1 |
-| [bpg/proxmox](https://registry.terraform.io/providers/bpg/proxmox/0.54.0) | 0.54.0 |
+| <a name="requirement_proxmox"></a> [proxmox](#requirement\_proxmox) | 0.70.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| [bpg/proxmox](https://registry.terraform.io/providers/bpg/proxmox/0.54.0) | 0.54.0 |
+| <a name="provider_proxmox"></a> [proxmox](#provider\_proxmox) | 0.70.0 |
 
 ## Modules
 
@@ -24,7 +21,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [proxmox_virtual_environment_download_file.cloud_image_file](https://registry.terraform.io/providers/bpg/proxmox/0.54.0/docs/resources/virtual_environment_download_file) | resource |
+| [proxmox_virtual_environment_download_file.cloud_image_file](https://registry.terraform.io/providers/bpg/proxmox/0.70.0/docs/resources/virtual_environment_download_file) | resource |
 
 ## Inputs
 

@@ -30,15 +30,11 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
       
-      - name: Set up authentication
-        run: git config --global credential.helper 'cache --timeout=3600'
-      
-        # Added [skip ci] commit tag to avoid infinite CI loop
       - name: Commit changes
         run: |   
           git add -A
           git commit -m "chore: auto-format Terraform files [skip ci]" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.GH_ACTION }}@github.com/${{ github.repository }}.git ${{ github.head_ref }}
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git ${{ github.head_ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

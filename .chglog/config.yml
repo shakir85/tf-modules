@@ -11,12 +11,14 @@ options:
         - fix
         - enh
         - refactor
+        - chore
   commit_groups:
     title_maps:
       feat: Features
       fix: Bug Fixes
       enh: Ehancements
       refactor: Code Refactoring
+      chore: General Changes
   header:
     pattern: "^(\\w*)\\:\\s(.*)$"
     pattern_maps:

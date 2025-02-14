@@ -8,6 +8,9 @@
 | <a name="requirement_proxmox"></a> [proxmox](#requirement\_proxmox) | 0.70.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | 3.6.3 |
 
+## LXC Template Download
+An LXC container template must be downloaded first. Download an official LXC template file from the Proxmox UI, or through this link http://download.proxmox.com/images/system
+
 ## Providers
 
 | Name | Version |

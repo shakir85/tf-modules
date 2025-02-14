@@ -1,65 +1,87 @@
-
-variable "proxmox_node_name" {
+variable "description" {
+  default     = "Manage by Terraform"
   type        = string
-  description = "Proxmox node name where the container will be deployed. In a single-node environment, it's typically: `pve`"
+  description = "Container description"
+}
+
+variable "node_name" {
+  type        = string
+  description = "The name of the node to assign the container to"
 }
 
 variable "hostname" {
   type        = string
-  description = "LXC hostname."
+  description = "Hostname to assign to the container"
 }
 
-variable "lxc_template_file" {
+variable "ip_config" {
+  default     = "dhcp"
   type        = string
-  description = "Name of the LXC container template file. For example: ubuntu-20.04-standard_20.04-1_amd64.tar.gz"
+  description = "The IP configuration (default to dhcp)"
 }
 
-variable "lxc_template_path" {
+variable "network_interface" {
+  default     = "eth0"
   type        = string
-  description = "Storage name where the LXC template is located. For example, `local` or `local-lvm`."
+  description = "A network interface"
 }
 
-variable "password" {
+variable "template_file_id" {
   type        = string
-  description = "Container login password."
+  description = "The identifier for an OS template file. The ID format is <datastore_id>:<content_type>/<file_name>, for example local:iso/jammy-server-cloudimg-amd64.tar.gz."
 }
 
-variable "tags" {
-  default     = null
+variable "os_type" {
+  default     = "unmanaged"
   type        = string
-  description = "Tags of the container in a single string and semicolon-delimited (e.g. `terraform;test`).."
+  description = "OS type: Alpine, Ubunt ...etc"
 }
 
-variable "swap" {
-  default     = 0
-  type        = number
-  description = "A number that sets the amount of swap memory available to the container. Default is `0`."
-}
-
-variable "disk_name" {
+variable "disk_id" {
   type        = string
-  description = "Proxmox storage pool (disk name) where the VM's disk should be stored."
+  description = "Storage disk identifier (name)"
 }
 
 variable "disk_size" {
+  default     = "4"
   type        = string
-  description = "Disk size in Terrabyte (T), Gigabytes (G), Megabyte (M), or Kilobyte (K). For example, `8G`"
+  description = "The size of the root filesystem in gigabytes (defaults to 4). When set to 0 a directory or zfs/btrfs subvolume will be created. Requires datastore_id to be set."
 }
 
-variable "container_network_interface" {
-  default     = "eth0"
+variable "ssh_public_key_path" {
   type        = string
-  description = "LXC container network interface name. Default value: `eth0`."
+  description = "Path to the local public key to be added to the default user's `.ssh/authorized_keys` file."
 }
 
-variable "host_bridge_network" {
-  default     = "vmbr0"
-  type        = string
-  description = "Default node's network device bridge. Default value: `vmbr0`."
+variable "memory" {
+  default     = 1024
+  type        = number
+  description = "The dedicated memory in megabytes"
 }
 
-variable "ip_address" {
-  default     = "dhcp"
+variable "unprivileged" {
+  default     = true
+  type        = bool
+  description = "Whether the container runs as unprivileged on the host"
+}
+
+variable "firewall" {
+  default     = true
+  type        = bool
+  description = "Whether this interface's firewall rules should be used"
+}
+
+variable "cpu_cores" {
+  default     = 1
+  type        = number
+  description = "The number of CPU cores"
+}
+
+variable "timezone" {
   type        = string
-  description = "For setting static DHCP IP, add an IPv4 with CIDR notation. For example 10.20.30.40/24. Default value `dhcp`."
+  description = "Timezone to be configured via `timedatectl` in cloud-init template."
+}
+
+variable "foo" {
+
 }

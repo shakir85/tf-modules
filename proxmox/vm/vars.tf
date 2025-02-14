@@ -80,7 +80,7 @@ variable "network_interface" {
 variable "cloud_image_info" {
   type        = list(string)
   description = <<EOF
-  A list of strings as the following: 
+  A list of strings as the following:
   index 0 for storage pool (disk) name where the cloud image iso, img, qcow... etc is stored.
   index 1 for cloud-image file name (it must end with `.img` extension)
   For example: `cloud_image_info: ["local-lvm", "debian-12-generic.qcow2.img"]`.
@@ -89,7 +89,7 @@ variable "cloud_image_info" {
 
 variable "ssh_public_key_path" {
   type        = string
-  description = "Path to the public SSH key to allow the default user SSH into the VM."
+  description = "Path to the local public key to be added to the default user's `.ssh/authorized_keys` file."
 }
 
 variable "timezone" {

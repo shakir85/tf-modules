@@ -1,7 +1,6 @@
 ## Proxmox VM Module Usage
 
-This is an example for using the `proxmox/vm` module. 
-For credentials, ensure you pass them securely. 
+This is an example for using the `proxmox/vm` module. Refer to the [module's documentation](../proxmox/vm/README.md) for more details.
 
 File: `providers.tf`
 ```hcl
@@ -13,7 +12,7 @@ terraform {
   required_providers {
     proxmox = {
       source  = "bpg/proxmox"
-      version = "0.54.0"
+      version = "0.70.0"
     }
     local = {
       source  = "hashicorp/local"
@@ -63,9 +62,9 @@ variable "id_rsa" {
 
 File: `main.tf`
 ```hcl
-module "MODULE_NAME" {
+module "<<RESOURCE_NAME>>" {
   // Required Variables
-  source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=RELEADE_ID"
+  source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=<RELEADE_ID>"
   proxmox_node_name   = ""
   disk_name           = ""
   ssh_public_key_path = ""

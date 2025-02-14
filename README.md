@@ -14,4 +14,4 @@ This repository contains reusable Terraform modules for managing Proxmox infrast
 
 - [VM](proxmox/vm/) resource, [Example script](./usage/proxmox.vm.md).
 - [LXC](proxmox/lxc/) resource, [Example script](./usage/proxmox.lxc.md)
-- [Cloud-image](proxmox/get-cloud-image/) file download into pve environment.
+- [Cloud-image](proxmox/cloud-img-download/) module to download image files into pve environment.

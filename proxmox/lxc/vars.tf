@@ -76,12 +76,3 @@ variable "cpu_cores" {
   type        = number
   description = "The number of CPU cores"
 }
-
-variable "timezone" {
-  type        = string
-  description = "Timezone to be configured via `timedatectl` in cloud-init template."
-}
-
-variable "foo" {
-
-}

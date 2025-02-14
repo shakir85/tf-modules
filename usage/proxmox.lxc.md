@@ -42,7 +42,7 @@ File: `main.tf`
 ```hcl
 module "MODULE_NAME" {
   # Required Variables
-  source            = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=RELEADE_ID"
+  source            = "git::https://github.com/shakir85/terraform_modules.git//proxmox/lxc?ref=RELEADE_ID"
   proxmox_node_name = ""
   hostname          = ""
   lxc_template_file = ""

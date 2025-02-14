@@ -4,12 +4,13 @@
 
 This repository contains reusable Terraform modules for managing Proxmox infrastructure.
 
+*Modules in this repo are still in pre-1.0.0 version, so anything can change at any time.*
+
 ## Provider in use
 
-- [bpg/proxmox](https://registry.terraform.io/providers/bpg/proxmox/latest) For VMs, and image files.
-- [telmate/proxmox](https://registry.terraform.io/namespaces/Telmate) For LXC containers.
+- [bpg/proxmox](https://registry.terraform.io/providers/bpg/proxmox/latest).
 
-## Available Modules
+## Usage
 
 - [VM](proxmox/vm/) resource, [Example script](./usage/proxmox.vm.md).
 - [LXC](proxmox/lxc/) resource, [Example script](./usage/proxmox.lxc.md)

@@ -36,10 +36,10 @@ jobs:
         run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/lxc
 
       - name: Generate Cloud-Image Module Docs
-        run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/get-cloud-image
+        run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/cloud-img-download
 
       - name: Commit changes
-        run: |   
+        run: |
           git add -A
           git commit -m "chore: update Terraform docs [skip ci]" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git ${{ github.head_ref }}

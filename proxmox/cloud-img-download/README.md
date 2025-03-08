@@ -1,10 +1,10 @@
 <!-- BEGIN_TF_DOCS -->
 ## Usage
 
-This is an example for using the `proxmox/vm` module and the required variables. Get the release ID from the [releases page](https://github.com/shakir85/Terraform-Modules/releases).
+This is an example for using the `proxmox/cloud-img-download` module and the required variables. Get the release ID from the [releases page](https://github.com/shakir85/Terraform-Modules/releases).
 
 ```hcl
-module "<<RESOURCE_NAME>>" {
+module "<NAME>" {
  source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/cloud-img-download?ref=<RELEADE_ID>"
  proxmox_node_name   = ""
  cloud_image_url     = ""

@@ -5,26 +5,26 @@ This is an example for using the `proxmox/lxc` module and the required variables
 
 ```hcl
 module "<NAME>" {
-  Required Variables
-  source                = "git::https://github.com/shakir85/terraform_modules.git//proxmox/lxc?ref=<RELEADE_ID>"
-  node_name             = ""
-  disk_id               = ""
-  ssh_public_key_path   = ""
-  username              = ""
-  hostname              = ""
-  template_file_id      = ""
-  #
-  # Optional Variables (default values presented below)
-  #
-  description           = "Manage by Terraform"
-  ip_config             = "dhcp"
-  network_interface     = "eth0"
-  os_type               = "unmanaged"
-  disk_size             = "4"
-  memory                = 1024
-  cpu_cores             = 1
-  unprivileged          = true
-  firewall              = true
+Required Variables
+source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/lxc?ref=<RELEADE_ID>"
+node_name             = ""
+disk_id               = ""
+ssh_public_key_path   = ""
+username              = ""
+hostname              = ""
+template_file_id      = ""
+#
+# Optional Variables (default values presented below)
+#
+description           = "Manage by Terraform"
+ip_config             = "dhcp"
+network_interface     = "eth0"
+os_type               = "unmanaged"
+disk_size             = "4"
+memory                = 1024
+cpu_cores             = 1
+unprivileged          = true
+firewall              = true
 }
 ```
 

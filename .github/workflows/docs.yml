@@ -33,7 +33,7 @@ jobs:
         run: terraform-docs markdown document ./proxmox/vm --output-file  README.md --output-mode inject
 
       - name: Generate LX Module Docs
-        run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/lxc
+        run: terraform-docs markdown document ./proxmos/lxc --output-file  README.md --output-mode inject
 
       - name: Generate Cloud-Image Module Docs
         run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/cloud-img-download

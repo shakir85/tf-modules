@@ -34,7 +34,7 @@ variable "temp_user_password" {
 variable "enable_guest_agent" {
   default     = false
   type        = bool
-  description = "Whether to enable the QEMU guest agent. You must install `qemu-guest-agent` - it could be installed via cloud-init. Read the 'Qemu guest agent' section in bpg/proxmox docs first."
+  description = "Whether to enable the QEMU guest agent. The `qemu-guest-agent` must be installed **and** running. Read the 'Qemu guest agent' section [in bpg/proxmox docs](https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_vm#qemu-guest-agent) first."
 }
 
 variable "cores" {
@@ -100,5 +100,5 @@ variable "timezone" {
 variable "cpu_type" {
   default     = "qemu64"
   type        = string
-  description = "The emulated CPU type. Some VMs need certain types of CPUs. See available values in https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_vm#host"
+  description = "The emulated CPU type. Some VMs need certain types of CPUs. See available values in [the provider docs](https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_vm#host)."
 }

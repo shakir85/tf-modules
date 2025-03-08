@@ -30,7 +30,7 @@ jobs:
           git pull origin ${{ github.head_ref }}
 
       - name: Generate VM Module Docs
-        run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/vm
+        run: terraform-docs markdown document ./proxmox/vm --output-file  README.md --output-mode inject
 
       - name: Generate LX Module Docs
         run: terraform-docs markdown table --output-file README.md --output-mode inject ./proxmox/lxc

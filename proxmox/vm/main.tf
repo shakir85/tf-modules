@@ -1,3 +1,42 @@
+/**
+ * ## Usage
+ *
+ * This is an example for using the `proxmox/vm` module and the required variables. Get the release ID from the [releases page](https://github.com/shakir85/Terraform-Modules/releases).
+ *
+ * ```hcl
+ * module "<NAME>" {
+ *   # Required Variables
+ *   source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=<RELEADE_ID>"
+ *   proxmox_node_name   = ""
+ *   disk_name           = ""
+ *   ssh_public_key_path = ""
+ *   username            = ""
+ *   hostname            = ""
+ *   timezone            = ""
+ *   cloud_image_info    = ["STORAGE_POOL", "CLOUD_IMAGE_FILE_NAME"]
+ *   disk_size           = ""
+ *
+ *   # Optional Variables (default values presented below)
+ *   description        = "Managed by Terraform"
+ *   tags               = ["terraform"]
+ *   cores              = 1
+ *   sockets            = 1
+ *   memory             = 512
+ *   temp_user_password = "changeme" # You'll be asked to change this password upon your first login
+ *   See provider's docs: bpg/proxmox before change the below optional vars
+ *   disk_interface    = "scsi0"
+ *   network_interface = "vmbr0"
+ *   cpu_type          = "qemu64"
+ * }
+ *
+ * # Print any output block from the main module
+ * output "module_outputs" {
+ *   value = module.<NAME>
+ * }
+ * ```
+ *
+ */
+
 terraform {
   required_version = ">= 1.5.7"
   required_providers {
@@ -139,5 +178,6 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
 }
 
 output "print_temp_password" {
-  value = "Your login password is: ${var.temp_user_password}\nYou will be required to change the password on your first login."
+  description = "Prints the temporary login password defined by `var.temp_user_password`. Check the variable's default value above. You'll be required to change it on your first login."
+  value       = "Your login password is: ${var.temp_user_password}\nYou will be required to change the password on your first login."
 }

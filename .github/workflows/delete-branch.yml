@@ -17,8 +17,8 @@ jobs:
       - name: Run Git Setup
         uses: ./.github/actions/setup-git
         with:
-          repo-path: /__w/Terraform-Modules/Terraform-Modules
-      
+          repo-path: /__w/proxmox-tf-modules/proxmox-tf-modules
+
       - name: Delete feature branch
         run: |
           git fetch --prune

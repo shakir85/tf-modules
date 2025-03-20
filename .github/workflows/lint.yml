@@ -22,7 +22,7 @@ jobs:
       - name: Run Git Setup
         uses: ./.github/actions/setup-git
         with:
-          repo-path: /__w/Terraform-Modules/Terraform-Modules
+          repo-path: /__w/proxmox-tf-modules/proxmox-tf-modules
 
       - name: Fetch latest changes
         run: |
@@ -36,7 +36,7 @@ jobs:
         run: tflint --recursive
 
       - name: Commit changes
-        run: |   
+        run: |
           git add -A
           git commit -m "chore: auto-format Terraform files [skip ci]" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git ${{ github.head_ref }}

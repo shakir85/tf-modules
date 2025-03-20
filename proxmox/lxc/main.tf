@@ -1,7 +1,7 @@
 /**
  * ## Usage
  *
- * This is an example for using the `proxmox/lxc` module and the required variables. Get the release ID from the [releases page](https://github.com/shakir85/Terraform-Modules/releases).
+ * This is an example for using the `proxmox/lxc` module and the required variables. Get the release ID from the [releases page](https://github.com/shakir85/proxmox-tf-modules/releases).
  *
  * ```hcl
  * module "<NAME>" {

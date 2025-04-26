@@ -8,35 +8,29 @@ on:
       - reopened
 
 jobs:
-  generate-docs:
-    runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/shakir85/tf-tools:latest
+  generate-vm-docs:
+    uses: ./.github/workflows/generate-docs.yml
+    with:
+      module_path: './proxmox/vm'
+      output_file: 'README.md'
 
+  generate-lxc-docs:
+    uses: ./.github/workflows/generate-docs.yml
+    with:
+      module_path: './proxmox/lxc'
+      output_file: 'README.md'
+
+  generate-cloud-img-docs:
+    uses: ./.github/workflows/generate-docs.yml
+    with:
+      module_path: './proxmox/cloud-img-download'
+      output_file: 'README.md'
+
+  commit-changes:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-
-      - name: Run Git Setup
-        uses: ./.github/actions/setup-git
-        with:
-          repo-path: /__w/proxmox-tf-modules/proxmox-tf-modules
-
-      - name: Fetch latest changes
-        run: |
-          git fetch origin ${{ github.head_ref }}
-          git pull origin ${{ github.head_ref }}
-
-      - name: Generate VM Module Docs
-        run: terraform-docs markdown document ./proxmox/vm --output-file  README.md --output-mode inject
-
-      - name: Generate LX Module Docs
-        run: terraform-docs markdown document ./proxmox/lxc --output-file  README.md --output-mode inject
-
-      - name: Generate Cloud-Image Module Docs
-        run: terraform-docs markdown document ./proxmox/cloud-img-download --output-file  README.md --output-mode inject
 
       - name: Commit changes
         run: |

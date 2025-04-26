@@ -7,11 +7,6 @@ on:
       - synchronize
       - reopened
 
-# Must be explicitly set to allow commits from Dependabot PRs
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   generate-docs:
     runs-on: ubuntu-latest

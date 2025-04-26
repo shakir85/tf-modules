@@ -169,6 +169,14 @@ Type: `bool`
 
 Default: `false`
 
+### <a name="input_firewall_is_enabled"></a> [firewall\_is\_enabled](#input\_firewall\_is\_enabled)
+
+Description: Whether this interface's firewall rules should be used
+
+Type: `bool`
+
+Default: `false`
+
 ### <a name="input_memory"></a> [memory](#input\_memory)
 
 Description: The dedicated memory in megabytes

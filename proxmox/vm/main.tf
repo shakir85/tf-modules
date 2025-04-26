@@ -127,7 +127,7 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
     # Available attributes:
     # disconnected = false
     # enabled      = true
-    # firewall     = false
+    firewall = var.firewall_is_enabled
     # mac_address  = "BC:24:11:42:95:87"
     # model        = "virtio"
     # mtu          = 0

@@ -5,7 +5,15 @@
 
 version: 2
 updates:
-  - package-ecosystem: "terraform" # See documentation for possible values
-    directory: "/proxmox" # Location of package manifests
+  - package-ecosystem: "terraform"
+    directory: "/proxmox/cloud-img-download"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "terraform"
+    directory: "/proxmox/lxc"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "terraform"
+    directory: "/proxmox/vm"
     schedule:
       interval: "weekly"

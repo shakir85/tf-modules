@@ -29,6 +29,7 @@ jobs:
 
       - name: Fetch latest changes
         run: |
+          git config --global pull.rebase false
           git fetch origin ${{ github.head_ref }}
           git pull origin ${{ github.head_ref }}
 

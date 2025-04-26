@@ -6,6 +6,11 @@ variable "proxmox_node_name" {
 variable "hostname" {
   type        = string
   description = "VM hostname."
+
+  validation {
+    condition     = can(regex("^([a-zA-Z0-9-]{1,63})$|^([a-zA-Z0-9-]{1,63}\\.[a-zA-Z0-9-]{1,63})*$", var.hostname))
+    error_message = "hostname must be a valid DNS name"
+  }
 }
 
 variable "description" {
@@ -63,6 +68,11 @@ variable "disk_name" {
 variable "disk_size" {
   type        = string
   description = "Disk size in Gigabytes"
+
+  validation {
+    condition     = can(regex("^[0-9]+$", var.disk_size))
+    error_message = "disk_size must be a valid positive number."
+  }
 }
 
 variable "disk_interface" {

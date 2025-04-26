@@ -16,3 +16,10 @@ runs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
       shell: bash
+
+    - name: Configure Git for Pull
+      run: |
+        git config --global pull.rebase false  # Ensure merge strategy when pulling
+        git config --global fetch.prune true  # Prune deleted refs during fetch
+        git config --global pull.ff only       # Only allow fast-forward merges, to avoid merge commits
+      shell: bash

@@ -27,13 +27,6 @@ jobs:
         with:
           repo-path: /__w/proxmox-tf-modules/proxmox-tf-modules
 
-      - name: Configure Git for Pull
-        run: |
-          git config --global pull.rebase false
-          git config --global fetch.prune true
-          git config --global pull.ff only
-        shell: bash
-
       - name: Fetch latest changes
         run: |
           git fetch origin ${{ github.head_ref }}

@@ -27,11 +27,18 @@ jobs:
         with:
           repo-path: /__w/proxmox-tf-modules/proxmox-tf-modules
 
-      - name: Fetch latest changes
+      - name: Configure Git for Pull
         run: |
           git config --global pull.rebase false
+          git config --global fetch.prune true
+          git config --global pull.ff only
+        shell: bash
+
+      - name: Fetch latest changes
+        run: |
           git fetch origin ${{ github.head_ref }}
           git pull origin ${{ github.head_ref }}
+        shell: bash
 
       - name: Generate Docs
         run: terraform-docs markdown document ${{ inputs.module_path }} --output-file ${{ inputs.output_file }} --output-mode inject

@@ -113,3 +113,8 @@ variable "cpu_type" {
   description = "The emulated CPU type. Some VMs need certain types of CPUs. See available values in [the provider docs](https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_vm#host)."
 }
 
+variable "firewall_is_enabled" {
+  default     = false
+  type        = bool
+  description = "Whether this interface's firewall rules should be used"
+}

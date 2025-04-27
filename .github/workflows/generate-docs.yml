@@ -27,6 +27,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
+          fetch-depth: 0
 
       - name: Run Git Setup
         uses: ./.github/actions/setup-git
@@ -39,5 +40,5 @@ jobs:
           git pull origin ${{ github.head_ref }}
 
       - name: Generate Docs
-        run: terraform-docs markdown document ${{ inputs.module_path }} --output-file ${{ inputs.output_file }} --output-mode inject
-
+        run: |
+          terraform-docs markdown document ${{ inputs.module_path }} --output-file ${{ inputs.module_path }}/README.md --output-mode inject

@@ -38,6 +38,9 @@ jobs:
       - name: Generate Cloud-Image Module Docs
         run: terraform-docs markdown document ./proxmox/cloud-img-download --output-file  README.md --output-mode inject
 
+      - name: Generate Tags Module Docs
+        run: terraform-docs markdown document ./proxmox/tags --output-file  README.md --output-mode inject
+
       - name: Commit changes
         run: |
           git add -A

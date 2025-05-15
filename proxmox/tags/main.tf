@@ -41,6 +41,9 @@
  * - Empty values are excluded from the `tags` output to avoid unnecessary or redundant tags.
  * - Use `null` to remove a tag rather than an empty string.
  */
+terraform {
+  required_version = ">= 1.5.7"
+}
 
 variable "environment" {
   description = "Environment in which the VM is deployed (e.g., prod, test, devops)."

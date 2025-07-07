@@ -69,11 +69,11 @@ variable "nic_name" {
 #   description = "The name of the network bridge on the Proxmox host"
 # }
 
-variable "firewall" {
-  default     = false
-  type        = bool
-  description = "Whether this interface's firewall rules should be used"
-}
+# variable "firewall" {
+#   default     = false
+#   type        = bool
+#   description = "Whether this interface's firewall rules should be used"
+# }
 
 ## Storage variables ----------
 variable "disk_id" {

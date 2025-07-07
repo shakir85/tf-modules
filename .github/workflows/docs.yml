@@ -1,38 +1,72 @@
-name: TF Docs
+name: TF Docs Workflow
 
 on:
-  workflow_call:
-    inputs:
-      path:
-        type: string
-        required: true
-        description: "Path to the root directory of the Terraform module for which documentation will be generated"
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
   generate-docs:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        module:
+          - path: "./proxmox/vm"
+            name: "vm"
+          - path: "./proxmox/lxc"
+            name: "lxc"
+          - path: "./proxmox/cloud-img-download"
+            name: "cloud-img"
     container:
       image: ghcr.io/shakir85/tf-tools:latest
 
     steps:
-      - uses: shakir85/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
 
-      - uses: ./.github/actions/setup-git
+      - name: Run Git Setup
+        uses: ./.github/actions/setup-git
         with:
-          repo-path:  /__w/proxmox-tf-modules/proxmox-tf-modules
+          repo-path: /__w/proxmox-tf-modules/proxmox-tf-modules
 
-      - run: |
+      - name: Fetch latest changes
+        run: |
+          git config --global pull.rebase false
           git fetch origin ${{ github.head_ref }}
           git pull origin ${{ github.head_ref }}
 
-      - name: Generate Terraform Docs Recursively
+      - name: Generate Docs
         run: |
-          find terraform/ -mindepth 2 -type f -name "main.tf" -exec dirname {} \; | while read dir; do
-            echo "📄 Generating docs for $dir"
-            (cd "$dir" && terraform-docs markdown document .)
-          done
+          terraform-docs markdown document ${{ matrix.module.path }} --output-file README.md --output-mode inject
+
+      - name: Upload generated docs
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-docs-${{ matrix.module.name }}
+          path: ${{ matrix.module.path }}/README.md
+
+  commit-changes:
+    runs-on: ubuntu-latest
+    needs: generate-docs
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Run Git Setup
+        uses: ./.github/actions/setup-git
+        with:
+          repo-path: /__w/proxmox-tf-modules/proxmox-tf-modules
+
+      - name: Download all docs
+        uses: actions/download-artifact@v4
+        with:
+          path: .
 
       - name: Commit changes
         run: |

@@ -87,14 +87,6 @@ Type: `string`
 
 Default: `"4"`
 
-### <a name="input_firewall"></a> [firewall](#input\_firewall)
-
-Description: Whether this interface's firewall rules should be used
-
-Type: `bool`
-
-Default: `false`
-
 ### <a name="input_ipv4_config"></a> [ipv4\_config](#input\_ipv4\_config)
 
 Description: The IP configuration, Value should be either `dhcp` or a static IPv4, e.g., `192.168.1.19/24`. (default to dhcp)

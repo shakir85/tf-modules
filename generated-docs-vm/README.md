@@ -15,7 +15,6 @@ module "<NAME>" {
   timezone            = ""
   cloud_image_info    = ["STORAGE_POOL", "CLOUD_IMAGE_FILE_NAME"]
   disk_size           = ""
-
   # Optional Variables (default values presented below)
   description        = "Managed by Terraform"
   tags               = ["terraform"]
@@ -28,7 +27,6 @@ module "<NAME>" {
   network_interface = "vmbr0"
   cpu_type          = "qemu64"
 }
-
 # Print any output block from the main module
 output "module_outputs" {
   value = module.<NAME>
@@ -68,7 +66,6 @@ The following resources are used by this module:
 - [proxmox_virtual_environment_file.cloud_config](https://registry.terraform.io/providers/bpg/proxmox/0.70.0/docs/resources/virtual_environment_file) (resource)
 - [proxmox_virtual_environment_vm.vm_resource](https://registry.terraform.io/providers/bpg/proxmox/0.70.0/docs/resources/virtual_environment_vm) (resource)
 - [random_string.random_cloud_init_id](https://registry.terraform.io/providers/hashicorp/random/3.6.3/docs/resources/string) (resource)
-- [local_file.ssh_public_key](https://registry.terraform.io/providers/hashicorp/local/latest/docs/data-sources/file) (data source)
 
 ## Required Inputs
 

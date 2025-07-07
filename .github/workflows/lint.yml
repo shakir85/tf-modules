@@ -1,38 +1,31 @@
 name: TF Lint
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
+  workflow_call:
 
 jobs:
   code-lint:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     container:
       image: ghcr.io/shakir85/tf-tools:latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: shakir85/checkout@v4
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Run Git Setup
-        uses: ./.github/actions/setup-git
+      - uses: ./.github/actions/setup-git
         with:
           repo-path: /__w/proxmox-tf-modules/proxmox-tf-modules
 
-      - name: Fetch latest changes
-        run: |
+      - run: |
           git fetch origin ${{ github.head_ref }}
           git pull origin ${{ github.head_ref }}
 
-      - name: TF Formatting
+      - name: Format Terraform code
         run: terraform fmt -recursive
 
-      - name: Lint TF modules
+      - name: Lint Terraform code
         run: tflint --recursive
 
       - name: Commit changes

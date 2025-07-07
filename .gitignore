@@ -36,6 +36,5 @@ terraform.rc
 # Other
 *tfstate
 proxmox_api.auto.tfvars
-.terraform*
 .pem
 .DS_Store

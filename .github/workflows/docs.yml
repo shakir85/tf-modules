@@ -1,11 +1,12 @@
 name: TF Docs
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
+  workflow_call:
+    inputs:
+      path:
+        type: string
+        required: true
+        description: "Path to the root directory of the Terraform module for which documentation will be generated"
 
 jobs:
   generate-docs:
@@ -14,32 +15,24 @@ jobs:
       image: ghcr.io/shakir85/tf-tools:latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: shakir85/checkout@v4
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Run Git Setup
-        uses: ./.github/actions/setup-git
+      - uses: ./.github/actions/setup-git
         with:
-          repo-path: /__w/proxmox-tf-modules/proxmox-tf-modules
+          repo-path:  /__w/proxmox-tf-modules/proxmox-tf-modules
 
-      - name: Fetch latest changes
-        run: |
+      - run: |
           git fetch origin ${{ github.head_ref }}
           git pull origin ${{ github.head_ref }}
 
-      - name: Generate VM Module Docs
-        run: terraform-docs markdown document ./proxmox/vm --output-file  README.md --output-mode inject
-
-      - name: Generate LX Module Docs
-        run: terraform-docs markdown document ./proxmox/lxc --output-file  README.md --output-mode inject
-
-      - name: Generate Cloud-Image Module Docs
-        run: terraform-docs markdown document ./proxmox/cloud-img-download --output-file  README.md --output-mode inject
-
-      - name: Generate Tags Module Docs
-        run: terraform-docs markdown document ./proxmox/tags --output-file  README.md --output-mode inject
+      - name: Generate Terraform Docs Recursively
+        run: |
+          find terraform/ -mindepth 2 -type f -name "main.tf" -exec dirname {} \; | while read dir; do
+            echo "📄 Generating docs for $dir"
+            (cd "$dir" && terraform-docs markdown document .)
+          done
 
       - name: Commit changes
         run: |

@@ -20,7 +20,7 @@ This repository contains reusable Terraform modules for managing Proxmox infrast
 
 ```hcl
 terraform {
-  required_version = ">= 1.5.7"
+  required_version = "~> 1.5.7"
   backend "" {
   }
 
@@ -31,7 +31,7 @@ terraform {
     }
     local = {
       source  = "hashicorp/local"
-      version = ">= 2.5.1"
+      version = "~> 2.5.1"
     }
   }
 }

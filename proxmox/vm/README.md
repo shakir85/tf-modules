@@ -37,9 +37,9 @@ output "module_outputs" {
 
 The following requirements are needed by this module:
 
-- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.5.7)
+- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.5.7)
 
-- <a name="requirement_local"></a> [local](#requirement\_local) (>= 2.5.1)
+- <a name="requirement_local"></a> [local](#requirement\_local) (~> 2.5.1)
 
 - <a name="requirement_proxmox"></a> [proxmox](#requirement\_proxmox) (0.70.0)
 
@@ -49,7 +49,7 @@ The following requirements are needed by this module:
 
 The following providers are used by this module:
 
-- <a name="provider_local"></a> [local](#provider\_local) (>= 2.5.1)
+- <a name="provider_local"></a> [local](#provider\_local) (~> 2.5.1)
 
 - <a name="provider_proxmox"></a> [proxmox](#provider\_proxmox) (0.70.0)
 

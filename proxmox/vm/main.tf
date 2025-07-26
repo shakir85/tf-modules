@@ -1,21 +1,3 @@
-terraform {
-  required_version = ">= 1.5.7"
-  required_providers {
-    proxmox = {
-      source  = "bpg/proxmox"
-      version = "0.70.0"
-    }
-    local = {
-      source  = "hashicorp/local"
-      version = ">= 2.5.1"
-    }
-    random = {
-      source  = "hashicorp/random"
-      version = "3.6.3"
-    }
-  }
-}
-
 data "local_file" "ssh_public_key" {
   filename = var.ssh_public_key_path
 }
@@ -100,11 +82,8 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
   serial_device {}
 }
 
+# This section creates a cloud-init configuration file for the VM.
 resource "proxmox_virtual_environment_file" "cloud_config" {
-  /*
-  * This section sets initial configurations required for the VM.
-  * Use Ansible for additional configs/installs.
-  */
   content_type = "snippets"
   datastore_id = var.disk_name
   node_name    = var.proxmox_node_name

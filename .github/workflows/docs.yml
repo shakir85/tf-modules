@@ -19,8 +19,6 @@ jobs:
             name: "lxc"
           - path: "./proxmox/cloud-img-download"
             name: "cloud-img"
-          - path: "./proxmox/tags"
-            name: "tags"
     container:
       image: ghcr.io/shakir85/tf-tools:latest
 
@@ -75,7 +73,6 @@ jobs:
           mv ./artifacts/generated-docs-vm/README.md ./proxmox/vm/README.md
           mv ./artifacts/generated-docs-lxc/README.md ./proxmox/lxc/README.md
           mv ./artifacts/generated-docs-cloud-img/README.md ./proxmox/cloud-img-download/README.md
-          mv ./artifacts/generated-tags/README.md ./proxmox/tags/README.md
 
       - name: Commit changes
         run: |

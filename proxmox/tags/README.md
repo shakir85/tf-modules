@@ -35,7 +35,7 @@ resource "proxmox_vm_qemu" "vm_1" {
 }
 
 resource "proxmox_vm_qemu" "vm_2" {
-  name = "k8s-worker-01"
+  name = "some-big-beautiful-proxy"
   tags = [for key, value in module.tags_group_2.tags : "${key}:${value}"]
 }
 ```

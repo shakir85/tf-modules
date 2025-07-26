@@ -66,7 +66,13 @@ jobs:
       - name: Download all docs
         uses: actions/download-artifact@v4
         with:
-          path: .
+          path: ./artifacts
+
+      - name: Move generated README.md files to module directories
+        run: |
+          mv ./artifacts/generated-docs-vm/README.md ./proxmox/vm/README.md
+          mv ./artifacts/generated-docs-lxc/README.md ./proxmox/lxc/README.md
+          mv ./artifacts/generated-docs-cloud-img/README.md ./proxmox/cloud-img-download/README.md
 
       - name: Commit changes
         run: |

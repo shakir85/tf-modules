@@ -70,8 +70,9 @@ jobs:
       - run: echo "TF_VAR_api_token=${{ secrets.PROXMOX_API_TOKEN }}" >> $GITHUB_ENV
 
       - name: Replace branch placeholder
-        run: |
-          sed -i "s/BRANCH_PLACEHOLDER/${GITHUB_REF_NAME}/g" ./proxmox/vm/test/smoke.tf
+        run: sed -i "s/BRANCH_PLACEHOLDER/${BRANCH_NAME}/g" ./proxmox/vm/test/smoke.tf
+        env:
+          BRANCH_NAME: ${{ github.ref_name }}
 
       - name: Terraform Init
         working-directory: ./proxmox/vm/test

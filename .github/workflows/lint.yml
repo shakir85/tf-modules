@@ -6,10 +6,12 @@ on:
       - opened
       - synchronize
       - reopened
+    paths:
+      - 'proxmox/**'
 
 jobs:
   code-lint:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     container:
       image: ghcr.io/shakir85/tf-tools:latest
 

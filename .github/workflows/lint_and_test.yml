@@ -125,6 +125,7 @@ jobs:
 
           module "smoke_test" {
             source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=${BRANCH_NAME}"
+            enable_cloud_init   = false
             proxmox_node_name   = "pve1"
             disk_name           = "sdc"
             ssh_public_key_path = "\${path.module}/id_rsa.pub"

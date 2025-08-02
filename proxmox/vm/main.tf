@@ -62,7 +62,8 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
       }
     }
 
-    user_data_file_id = proxmox_virtual_environment_file.cloud_config.id
+    user_data_file_id = var.enable_cloud_init ? proxmox_virtual_environment_file.cloud_config[0].id : null
+
   }
 
   network_device {
@@ -84,6 +85,8 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
 
 # This section creates a cloud-init configuration file for the VM.
 resource "proxmox_virtual_environment_file" "cloud_config" {
+  count = var.enable_cloud_init ? 1 : 0
+
   content_type = "snippets"
   datastore_id = var.disk_name
   node_name    = var.proxmox_node_name

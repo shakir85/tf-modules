@@ -118,3 +118,9 @@ variable "firewall_is_enabled" {
   type        = bool
   description = "Whether this interface's firewall rules should be used"
 }
+
+variable "enable_cloud_init" {
+  type        = bool
+  default     = true
+  description = "The ability to disable cloud-init for module smoke test via CI/CD"
+}

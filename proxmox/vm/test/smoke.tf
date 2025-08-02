@@ -38,14 +38,8 @@ resource "local_file" "public_key" {
   filename = "${path.module}/id_rsa.pub"
 }
 
-variable "branch_ref" {
-  type        = string
-  description = "Should be the active dev branch, captured by the CI/CD pipeline."
-}
-
 module "smoke_test" {
-  # Required Variables
-  source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=${var.branch_ref}"
+  source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=BRANCH_PLACEHOLDER"
   proxmox_node_name   = "pve1"
   disk_name           = "sdc"
   ssh_public_key_path = "${path.module}/id_rsa.pub"

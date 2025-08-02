@@ -67,12 +67,11 @@ jobs:
           git fetch origin ${{ github.head_ref }}
           git pull origin ${{ github.head_ref }}
 
-      - name: Set branch name as TF_VAR_branch_ref
-        run: |
-          BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-          echo "TF_VAR_branch_ref=$BRANCH_NAME" >> $GITHUB_ENV
-
       - run: echo "TF_VAR_api_token=${{ secrets.PROXMOX_API_TOKEN }}" >> $GITHUB_ENV
+
+      - name: Replace branch placeholder
+        run: |
+          sed -i "s/BRANCH_PLACEHOLDER/${GITHUB_REF_NAME}/g" ./proxmox/vm/test/smoke.tf
 
       - name: Terraform Init
         working-directory: ./proxmox/vm/test

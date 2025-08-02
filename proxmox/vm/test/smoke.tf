@@ -13,7 +13,7 @@ terraform {
       source  = "hashicorp/random"
       version = "3.5.1"
     }
-    tls_private_key = {
+    tls = {
       source  = "hashicorp/tls"
       version = "3.5.1"
     }

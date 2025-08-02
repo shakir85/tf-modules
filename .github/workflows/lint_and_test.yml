@@ -134,6 +134,7 @@ jobs:
             cloud_image_info    = ["sdc", "debian-12-generic-amd64.qcow2.img"]
             disk_size           = "20"
             memory              = 1028
+            depends_on          = [local_file.public_key]
           }
           EOF
         env:

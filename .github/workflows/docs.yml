@@ -6,10 +6,12 @@ on:
       - opened
       - synchronize
       - reopened
+    paths:
+      - 'proxmox/**'
 
 jobs:
   generate-docs:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       matrix:
         module:

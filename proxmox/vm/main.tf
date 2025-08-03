@@ -33,21 +33,33 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
     dedicated = var.memory
   }
 
-  disk {
-    # Available attributes:
-    # aio               = "io_uring"
-    # backup            = true
-    # cache             = "none"
-    # discard           = "ignore"
-    # file_format       = "qcow2"
-    # iothread          = false
-    # path_in_datastore = "101/vm-101-disk-0.qcow2"
-    # replicate         = true
-    # ssd               = false
-    datastore_id = var.disk_name
-    file_id      = "${element(var.cloud_image_info, 0)}:iso/${element(var.cloud_image_info, 1)}"
-    interface    = var.disk_interface
-    size         = var.disk_size
+  dynamic "disk" {
+    for_each = var.use_clone ? [] : [1]
+    content {
+      # Available attributes:
+      # aio               = "io_uring"
+      # backup            = true
+      # cache             = "none"
+      # discard           = "ignore"
+      # file_format       = "qcow2"
+      # iothread          = false
+      # path_in_datastore = "101/vm-101-disk-0.qcow2"
+      # replicate         = true
+      # ssd               = false
+      datastore_id = var.disk_name
+      file_id      = "${element(var.cloud_image_info, 0)}:${element(var.cloud_image_info, 1)}"
+      interface    = var.disk_interface
+      size         = var.disk_size
+    }
+  }
+
+  dynamic "clone" {
+    for_each = var.use_clone ? [1] : []
+    content {
+      vm_id        = var.template_id
+      full         = false
+      datastore_id = var.disk_name
+    }
   }
 
   initialization {

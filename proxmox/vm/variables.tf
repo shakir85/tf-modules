@@ -42,6 +42,17 @@ variable "enable_guest_agent" {
   description = "Whether to enable the QEMU guest agent. The `qemu-guest-agent` must be installed **and** running. Read the 'Qemu guest agent' section [in bpg/proxmox docs](https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_vm#qemu-guest-agent) first."
 }
 
+variable "use_clone" {
+  description = "Use template clone instead of disk image"
+  type        = bool
+  default     = false
+}
+
+variable "template_id" {
+  description = "Proxmox VM template ID used for cloning"
+  type        = number
+}
+
 variable "cores" {
   default     = 1
   type        = number

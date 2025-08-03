@@ -130,7 +130,6 @@ jobs:
             template_id         = 8000
             proxmox_node_name   = "pve1"
             disk_name           = "sdc"
-            directory           = "sdc"
             ssh_public_key_path = "\${path.module}/id_rsa.pub"
             username            = random_pet.name.id
             hostname            = "smoke-test-\${random_pet.name.id}"

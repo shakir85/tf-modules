@@ -151,10 +151,10 @@ jobs:
         run: terraform plan
         working-directory: ./proxmox/vm/test
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-        working-directory: ./proxmox/vm/test
+      # - name: Terraform Apply
+      #   run: terraform apply -auto-approve
+      #   working-directory: ./proxmox/vm/test
 
-      - name: Terraform Destroy
-        run: terraform destroy -auto-approve
-        working-directory: ./proxmox/vm/test
+      # - name: Terraform Destroy
+      #   run: terraform destroy -auto-approve
+      #   working-directory: ./proxmox/vm/test

@@ -1,0 +1,69 @@
+name: VM Module Smoke Test
+
+on:
+  workflow_call:
+
+jobs:
+  smoke-test:
+    runs-on: self-hosted
+    container:
+      image: ghcr.io/shakir85/tf-tools:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Run Git Setup
+        uses: ./.github/actions/setup-git
+        with:
+          repo-path: /__w/proxmox-tf-modules/proxmox-tf-modules
+
+      - name: Fetch latest changes
+        run: |
+          git fetch origin ${{ github.head_ref }}
+          git pull origin ${{ github.head_ref }}
+
+      - run: |
+          echo "TF_VAR_api_token=${{ secrets.PROXMOX_API_TOKEN }}" >> $GITHUB_ENV
+          echo "TF_VAR_proxmox_end_point=${{ secrets.PROXMOX_ENDPOINT }}" >> $GITHUB_ENV
+
+      - name: Generate VM smoke test Terraform file
+        run: |
+          cat <<EOF >> ./test/main.auto.tf
+          module "smoke_test" {
+            source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=${BRANCH_NAME}"
+            enable_guest_agent  = true
+            enable_cloud_init   = false
+            template_id         = 8000
+            proxmox_node_name   = "pve1"
+            disk_name           = "sdc"
+            ssh_public_key_path = "\${path.module}/id_rsa.pub"
+            username            = random_pet.name.id
+            hostname            = "smoke-test-\${random_pet.name.id}"
+            timezone            = "Etc/UTC"
+            cloud_image_info    = ["sdc", "debian-12-generic-amd64.qcow2.img"]
+            disk_size           = "20"
+            memory              = 1028
+            depends_on          = [local_file.public_key]
+          }
+          EOF
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./test
+
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: ./test
+
+      # - name: Terraform Apply
+      #   run: terraform apply -auto-approve
+      #   working-directory: ./proxmox/vm/test
+
+      # - name: Terraform Destroy
+      #   run: terraform destroy -auto-approve
+      #   working-directory: ./proxmox/vm/test

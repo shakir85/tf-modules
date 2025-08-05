@@ -1,13 +1,7 @@
 name: TF Lint
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-    paths:
-      - 'proxmox/**'
+  workflow_call:
 
 jobs:
   code-lint:

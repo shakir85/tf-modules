@@ -4,9 +4,9 @@
 This is an example for using the `proxmox/vm` module and the required variables. Get the release ID from the [releases page](https://github.com/shakir85/proxmox-tf-modules/releases).
 
 ```hcl
-module "<NAME>" {
+module "SOMENAME" {
   # Required Variables
-  source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=<RELEADE_ID>"
+  source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=RELEADE_ID"
   proxmox_node_name   = ""
   disk_name           = ""
   ssh_public_key_path = ""
@@ -27,9 +27,9 @@ module "<NAME>" {
   network_interface = "vmbr0"
   cpu_type          = "qemu64"
 }
-# Print any output block from the main module
+# Output block from the main module
 output "module_outputs" {
-  value = module.<NAME>
+  value = module.SOMENAME
 }
 ```
 

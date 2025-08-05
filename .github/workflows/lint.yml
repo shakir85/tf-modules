@@ -1,13 +1,7 @@
 name: TF Lint
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-    paths:
-      - 'proxmox/**'
+  workflow_call:
 
 jobs:
   code-lint:
@@ -36,6 +30,7 @@ jobs:
 
       - name: Lint TF modules
         run: tflint --recursive
+        working-directory: ./proxmox
 
       - name: Commit changes
         run: |

@@ -30,6 +30,7 @@ jobs:
 
       - name: Lint TF modules
         run: tflint --recursive
+        working-directory: ./proxmox
 
       - name: Commit changes
         run: |

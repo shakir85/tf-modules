@@ -37,7 +37,7 @@ output "module_outputs" {
 
 The following requirements are needed by this module:
 
-- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.5.7)
+- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.10.5)
 
 - <a name="requirement_local"></a> [local](#requirement\_local) (~> 2.5.1)
 

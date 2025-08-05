@@ -27,7 +27,6 @@ jobs:
 
       - run: |
           echo "TF_VAR_api_token=${{ secrets.PROXMOX_API_TOKEN }}" >> $GITHUB_ENV
-          echo "TF_VAR_proxmox_end_point=${{ secrets.PROXMOX_ENDPOINT }}" >> $GITHUB_ENV
 
       - name: Generate VM smoke test Terraform file
         run: |

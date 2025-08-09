@@ -1,7 +1,13 @@
 name: VM Module Smoke Test
 
 on:
-  workflow_call:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - 'proxmox/**'
 
 jobs:
   smoke-test:
@@ -54,11 +60,3 @@ jobs:
       - name: Terraform Plan
         run: terraform plan
         working-directory: ./test
-
-      # - name: Terraform Apply
-      #   run: terraform apply -auto-approve
-      #   working-directory: ./proxmox/vm/test
-
-      # - name: Terraform Destroy
-      #   run: terraform destroy -auto-approve
-      #   working-directory: ./proxmox/vm/test

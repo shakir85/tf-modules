@@ -8,6 +8,8 @@ jobs:
     runs-on: self-hosted
     container:
       image: ghcr.io/shakir85/tf-tools:latest
+    env:
+      TF_VAR_api_token: ${{ secrets.PROXMOX_API_TOKEN }}
 
     steps:
       - name: Checkout code
@@ -24,9 +26,6 @@ jobs:
         run: |
           git fetch origin ${{ github.head_ref }}
           git pull origin ${{ github.head_ref }}
-
-      - run: |
-          echo "TF_VAR_api_token=${{ secrets.PROXMOX_API_TOKEN }}" >> $GITHUB_ENV
 
       - name: Generate VM smoke test Terraform file
         run: |

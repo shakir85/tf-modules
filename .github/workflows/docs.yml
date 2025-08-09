@@ -7,7 +7,9 @@ on:
       - synchronize
       - reopened
     paths:
-      - 'proxmox/**'
+      - ./proxmox/vm
+      - ./proxmox/lxc
+      - ./proxmox/cloud-img-download
 
 jobs:
   generate-docs:

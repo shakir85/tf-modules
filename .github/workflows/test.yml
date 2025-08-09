@@ -7,7 +7,7 @@ on:
       - synchronize
       - reopened
     paths:
-      - 'proxmox/**'
+      - 'proxmox/vm/**'
 
 jobs:
   smoke-test:

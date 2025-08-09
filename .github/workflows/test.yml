@@ -2,6 +2,11 @@ name: VM Module Smoke Test
 
 on:
   workflow_call:
+    inputs:
+      api_token:
+        description: 'Proxmox API token'
+        required: true
+        type: string
 
 jobs:
   smoke-test:
@@ -9,7 +14,7 @@ jobs:
     container:
       image: ghcr.io/shakir85/tf-tools:latest
     env:
-      TF_VAR_api_token: ${{ secrets.PROXMOX_API_TOKEN }}
+      TF_VAR_api_token: ${{ inputs.api_token }}
 
     steps:
       - name: Checkout code
@@ -54,8 +59,6 @@ jobs:
       - name: Terraform Plan
         run: terraform plan
         working-directory: ./test
-        env:
-          TF_VAR_api_token: ${{ secrets.PROXMOX_API_TOKEN }}
 
       # - name: Terraform Apply
       #   run: terraform apply -auto-approve

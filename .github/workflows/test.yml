@@ -51,9 +51,23 @@ jobs:
         run: terraform init
         working-directory: ./test
 
+      - name: Debug token presence
+        run: |
+          if [ -z "$TF_VAR_api_token" ]; then
+            echo "TF_VAR_api_token is empty!"
+            exit 1
+          else
+            echo "TF_VAR_api_token is set, length: ${#TF_VAR_api_token}"
+            echo "Masked value: ${TF_VAR_api_token:0:4}****"
+          fi
+        env:
+          TF_VAR_api_token: ${{ secrets.PROXMOX_API_TOKEN }}
+
       - name: Terraform Plan
         run: terraform plan
         working-directory: ./test
+        env:
+          TF_VAR_api_token: ${{ secrets.PROXMOX_API_TOKEN }}
 
       # - name: Terraform Apply
       #   run: terraform apply -auto-approve

@@ -4,7 +4,7 @@
 This is an example for using the `proxmox/vm` module and the required variables. Get the release ID from the [releases page](https://github.com/shakir85/proxmox-tf-modules/releases).
 
 ```hcl
-module "<s>" {
+module "<NAME>" {
   # Required Variables
   source              = "git::https://github.com/shakir85/terraform_modules.git//proxmox/vm?ref=<RELEADE_ID>"
   proxmox_node_name   = ""

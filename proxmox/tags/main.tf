@@ -44,5 +44,6 @@ output "tags" {
     flavor  = var.flavor != "" ? var.flavor : null
     os      = var.os
     role    = var.role != "" ? var.role : null
+    size    = var.size != "" ? var.size : null
   })
 }

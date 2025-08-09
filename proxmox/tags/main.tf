@@ -26,6 +26,16 @@ variable "role" {
   default     = ""
 }
 
+variable "size" {
+  description = "Size of the VM (e.g., small, medium, large)."
+  type        = string
+  default     = ""
+  validation {
+    condition     = contains(["small", "medium", "large"], var.size)
+    error_message = "Size must be one of: small, medium, or large."
+  }
+}
+
 output "tags" {
   description = "Consolidated set of tags for the VM, excluding empty values."
   value = tomap({

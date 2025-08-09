@@ -1,12 +1,16 @@
 name: VM Module Smoke Test
 
+# on:
+#   workflow_call:
+
 on:
-  workflow_call:
-    inputs:
-      api_token:
-        description: 'Proxmox API token'
-        required: true
-        type: string
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - 'proxmox/**'
 
 jobs:
   smoke-test:
@@ -14,7 +18,7 @@ jobs:
     container:
       image: ghcr.io/shakir85/tf-tools:latest
     env:
-      TF_VAR_api_token: ${{ inputs.api_token }}
+      TF_VAR_api_token: ${{ secrets.PROXMOX_API_TOKEN }}
 
     steps:
       - name: Checkout code

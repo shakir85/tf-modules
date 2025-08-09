@@ -25,9 +25,9 @@ jobs:
   #         filters: |
   #           vm:
   #             - 'proxmox/vm/**'
-  test:
-    needs: [lint]
-    uses: ./.github/workflows/test.yml
-    # if: needs.check-vm-changes.outputs.vm_changed == 'true'
-    with:
-      api_token: ${{ secrets.PROXMOX_API_TOKEN }} # vscode: ignore
+  # test:
+  #   needs: [lint]
+  #   uses: ./.github/workflows/test.yml
+  #   # if: needs.check-vm-changes.outputs.vm_changed == 'true'
+  #   with:
+  #     api_token: ${{ secrets.PROXMOX_API_TOKEN }} # vscode: ignore

@@ -5,12 +5,12 @@ resource "helm_release" "gha_runners" {
   create_namespace = var.create_namespace
 
   values = [
-    yamldecode(templatefile("${path.module}/values/runner-values.yaml.tpl", {
+    templatefile("${path.module}/values/runner-values.yaml.tpl", {
       runner_name     = var.runner_name
       org             = var.org
       repo            = var.repo
       kube_namespace  = var.kube_namespace
-      rbac_namespaces = var.rbac_namespaces
-    }))
+      rbac_namespaces = yamlencode(var.rbac_namespaces)
+    })
   ]
 }

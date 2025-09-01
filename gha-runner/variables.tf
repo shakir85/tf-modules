@@ -28,3 +28,11 @@ variable "org" {
   description = "The GitHub organization or user that owns the target repository"
   type        = string
 }
+
+variable "shared_labels" {
+  description = "Shared labels"
+  type        = map(string)
+  default = {
+    "app.kubernetes.io/managed-by" = "terraform"
+  }
+}

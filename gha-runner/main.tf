@@ -5,18 +5,11 @@ resource "helm_release" "gha_runners" {
   create_namespace = var.create_namespace
 
   values = [
-    {
-      name       = var.runner_name
-      repository = "${var.org}/${var.repo}"
-      namespace  = var.kube_namespace
-      labels = {
-        "app.kubernetes.io/managed-by" = "terraform"
-        "repository/name"              = var.repo
-      }
-      podLabels = {
-        "app.kubernetes.io/managed-by" = "terraform"
-        "repository/name"              = var.repo
-      }
-    }
+    templatefile("${path.module}/values/runner-values.yaml.tpl", {
+      runner_name    = var.runner_name
+      org            = var.org
+      repo           = var.repo
+      kube_namespace = var.kube_namespace
+    })
   ]
 }

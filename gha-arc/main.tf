@@ -5,7 +5,7 @@ resource "kubernetes_namespace" "this" {
   }
 }
 
-resource "kubernetes_secret_v1" "this" {
+resource "kubernetes_secret_v1" "controller_manager" {
   metadata {
     name      = "controller-manager"
     namespace = var.arc_namespace

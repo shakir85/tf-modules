@@ -15,3 +15,8 @@ labels: {}
 
 # -- Labels for the runner pods
 podLabels: {}
+
+# -- RBAC detailed configuration
+rbac:
+  # -- Namespaces the runner will have access to
+  namespaces: []

@@ -8,4 +8,7 @@ podLabels:
   app.kubernetes.io/managed-by: terraform
   repository/name: ${repo}
 rbac:
-  namespaces: ${rbac_namespaces}
+  namespaces:
+%{ for ns in rbac_namespaces ~}
+    - ${ns}
+%{ endfor ~}

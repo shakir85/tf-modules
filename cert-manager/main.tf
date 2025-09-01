@@ -1,9 +1,10 @@
 resource "helm_release" "cert_manager" {
-  name       = "cert-manager"
-  repository = "https://charts.jetstack.io"
-  chart      = "cert-manager"
-  namespace  = var.kube_namespace
-  version    = "1.17.2"
+  name             = "cert-manager"
+  repository       = "https://charts.jetstack.io"
+  chart            = "cert-manager"
+  namespace        = var.kube_namespace
+  create_namespace = true
+  version          = "1.17.2"
 
   set = [{
     name  = "prometheus.enabled"

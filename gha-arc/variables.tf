@@ -1,16 +1,7 @@
-variable "kube_config_path" {
+variable "arc_namespace" {
+  description = "The name of the namespace where ARC will be deployed"
   type        = string
-  description = "Path to kubeconfig file relative to where this script will run"
-}
-
-variable "kube_context" {
-  description = "The name of the kubeconfig context to use"
-  type        = string
-}
-
-variable "kube_namespace" {
-  description = "The name of the namespace where resource will be deployed"
-  type        = string
+  default     = "arc-system"
 }
 
 variable "github_app_id" {

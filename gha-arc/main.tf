@@ -1,7 +1,7 @@
 resource "kubernetes_secret_v1" "controller_manager" {
   metadata {
     name      = "controller-manager"
-    namespace = var.kube_namespace
+    namespace = var.arc_namespace
     labels = {
       "app.kubernetes.io/managed-by" = "terraform"
     }
@@ -17,11 +17,12 @@ resource "kubernetes_secret_v1" "controller_manager" {
 }
 
 resource "helm_release" "actions_runner_controller" {
-  name       = "actions-runner-controller"
-  namespace  = var.kube_namespace
-  repository = "https://actions-runner-controller.github.io/actions-runner-controller"
-  chart      = "actions-runner-controller"
-  version    = "0.23.7"
+  name             = "actions-runner-controller"
+  namespace        = var.arc_namespace
+  create_namespace = true
+  repository       = "https://actions-runner-controller.github.io/actions-runner-controller"
+  chart            = "actions-runner-controller"
+  version          = "0.23.7"
 
   set = [{
     name  = "syncPeriod"
@@ -42,5 +43,8 @@ resource "helm_release" "actions_runner_controller" {
       }
     })
   ]
-  depends_on = [kubernetes_secret_v1.controller_manager]
+
+  depends_on = [
+    kubernetes_secret_v1.controller_manager
+  ]
 }

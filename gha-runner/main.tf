@@ -65,7 +65,7 @@ resource "kubernetes_role_binding" "this" {
 
   role_ref {
     kind      = "Role"
-    name      = kubernetes_role.this.metadata[0].name
+    name      = kubernetes_role.this[each.value].metadata[0].name
     api_group = "rbac.authorization.k8s.io"
   }
 

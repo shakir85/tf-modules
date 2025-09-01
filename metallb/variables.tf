@@ -1,12 +1,7 @@
 variable "kube_namespace" {
   type        = string
   default     = "metallb-system"
-  description = "Namespace where MetlLb should be installed. Default to `metallb-system` (this is a standard MetalLb namespace, don't change for no reason.)"
-}
-
-variable "chart_version" {
-  type        = string
-  description = "MetalLB chart version"
+  description = "Namespace where MetalLB should be installed. Default to `metallb-system` (this is a standard MetalLB namespace, don't change for no reason.)"
 }
 
 variable "create_namespace" {

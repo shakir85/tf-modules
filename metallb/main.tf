@@ -3,7 +3,7 @@ resource "helm_release" "metallb" {
   namespace  = var.kube_namespace
   repository = "https://metallb.github.io/metallb"
   chart      = "metallb"
-  version    = var.chart_version
+  version    = "0.14.5"
 
   create_namespace = var.create_namespace
 

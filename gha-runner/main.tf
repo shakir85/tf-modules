@@ -10,7 +10,7 @@ resource "helm_release" "gha_runners" {
       org             = var.org
       repo            = var.repo
       kube_namespace  = var.kube_namespace
-      rbac_namespaces = jsonencode(var.rbac_namespaces)
+      rbac_namespaces = var.rbac_namespaces
     }))
   ]
 }

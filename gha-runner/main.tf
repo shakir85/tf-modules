@@ -6,10 +6,11 @@ resource "helm_release" "gha_runners" {
 
   values = [
     templatefile("${path.module}/values/runner-values.yaml.tpl", {
-      runner_name    = var.runner_name
-      org            = var.org
-      repo           = var.repo
-      kube_namespace = var.kube_namespace
+      runner_name     = var.runner_name
+      org             = var.org
+      repo            = var.repo
+      kube_namespace  = var.kube_namespace
+      rbac_namespaces = var.rbac_namespaces
     })
   ]
 }

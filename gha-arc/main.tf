@@ -1,4 +1,11 @@
-resource "kubernetes_secret_v1" "controller_manager" {
+resource "kubernetes_namespace" "this" {
+  metadata {
+    name   = var.arc_namespace
+    labels = var.shared_labels
+  }
+}
+
+resource "kubernetes_secret_v1" "this" {
   metadata {
     name      = "controller-manager"
     namespace = var.arc_namespace
@@ -14,15 +21,16 @@ resource "kubernetes_secret_v1" "controller_manager" {
   }
 
   type = "Opaque"
+
+  depends_on = [kubernetes_namespace.this]
 }
 
 resource "helm_release" "actions_runner_controller" {
-  name             = "actions-runner-controller"
-  namespace        = var.arc_namespace
-  create_namespace = true
-  repository       = "https://actions-runner-controller.github.io/actions-runner-controller"
-  chart            = "actions-runner-controller"
-  version          = "0.23.7"
+  name       = "actions-runner-controller"
+  namespace  = var.arc_namespace
+  repository = "https://actions-runner-controller.github.io/actions-runner-controller"
+  chart      = "actions-runner-controller"
+  version    = "0.23.7"
 
   set = [{
     name  = "syncPeriod"

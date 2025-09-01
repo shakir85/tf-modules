@@ -18,3 +18,11 @@ variable "github_app_private_key" {
   description = "Path to the GitHub App private key file"
   type        = string
 }
+
+variable "shared_labels" {
+  description = "Shared labels"
+  type        = map(string)
+  default = {
+    "app.kubernetes.io/managed-by" = "terraform"
+  }
+}

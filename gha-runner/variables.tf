@@ -14,11 +14,6 @@ variable "runner_name" {
   type        = string
 }
 
-variable "rbac_namespaces" {
-  description = "The namespaces the GHA runner will have access to"
-  type        = list(string)
-}
-
 variable "repo" {
   description = "The name of the target repository where the GHA runner will be integrated"
   type        = string

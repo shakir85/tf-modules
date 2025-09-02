@@ -48,7 +48,7 @@ resource "kubernetes_role_binding" "gha_target_ns_binding" {
 
   role_ref {
     kind      = "Role"
-    name      = kubernetes_role.gha_target_ns_role.metadata[0].name
+    name      = kubernetes_role.gha_target_ns_role[each.value].metadata[0].name
     api_group = "rbac.authorization.k8s.io"
   }
 

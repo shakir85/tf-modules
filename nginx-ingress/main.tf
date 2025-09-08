@@ -11,10 +11,20 @@ resource "helm_release" "nginx_ingress" {
   chart      = "ingress-nginx"
   version    = "4.13.1"
 
-  timeout = 600
-
   values = [
-    file("${path.module}/values.yaml")
+    yamlencode({
+      controller = {
+        kind               = "DaemonSet"
+        ingressClassByName = true
+        service = {
+          type = "LoadBalancer"
+          port = {
+            http = 80
+          }
+        }
+        fullnameOverride = "nginx-controller"
+      }
+    })
   ]
 
   depends_on = [kubernetes_namespace.nginx_ingress]

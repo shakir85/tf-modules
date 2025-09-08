@@ -11,16 +11,16 @@ resource "helm_release" "nginx_ingress" {
   chart      = "ingress-nginx"
   version    = "4.13.1"
 
-  set = [
-    {
-      name  = "controller.kind"
-      value = "DaemonSet"
-    },
-    {
-      name  = "controller.service.ports.http"
-      value = 80
-    }
-  ]
+  # set = [
+  #   {
+  #     name  = "controller.kind"
+  #     value = "DaemonSet"
+  #   },
+  #   {
+  #     name  = "controller.service.ports.http"
+  #     value = 80
+  #   }
+  # ]
 
   depends_on = [kubernetes_namespace.nginx_ingress]
 }

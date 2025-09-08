@@ -11,20 +11,15 @@ resource "helm_release" "nginx_ingress" {
   chart      = "ingress-nginx"
   version    = "4.13.1"
 
-  values = [
-    yamlencode({
-      controller = {
-        kind               = "DaemonSet"
-        ingressClassByName = true
-        service = {
-          type = "LoadBalancer"
-          ports = {
-            http = 80
-          }
-        }
-        fullnameOverride = "nginx-controller"
-      }
-    })
+  set = [
+    {
+      name  = "controller.kind"
+      value = "DaemonSet"
+    },
+    {
+      name  = "controller.service.ports.http"
+      value = 80
+    }
   ]
 
   depends_on = [kubernetes_namespace.nginx_ingress]

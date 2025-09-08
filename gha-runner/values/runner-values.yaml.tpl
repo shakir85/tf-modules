@@ -1,4 +1,4 @@
-name: ${runner_name}
+name: "${runner_name}"
 repository: "${org}/${repo}"
 namespace: "${kube_namespace}"
 labels:

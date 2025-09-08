@@ -18,7 +18,7 @@ resource "helm_release" "nginx_ingress" {
         ingressClassByName = true
         service = {
           type = "LoadBalancer"
-          port = {
+          ports = {
             http = 80
           }
         }

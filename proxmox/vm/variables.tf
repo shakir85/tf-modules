@@ -36,12 +36,6 @@ variable "temp_user_password" {
   description = "Temorary login password. Upon the first login, a prompt to change the password will be presented."
 }
 
-variable "enable_guest_agent" {
-  default     = false
-  type        = bool
-  description = "Whether to enable the QEMU guest agent. The `qemu-guest-agent` must be installed **and** running. Read the 'Qemu guest agent' section [in bpg/proxmox docs](https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_vm#qemu-guest-agent) first."
-}
-
 variable "cores" {
   default     = 1
   type        = number

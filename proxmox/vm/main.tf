@@ -17,7 +17,7 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
 
   agent {
     # read 'Qemu guest agent' section, change to true only when ready
-    enabled = var.enable_guest_agent
+    enabled = true
     # timeout = "15m"
     # trim    = false
     # type    = "virtio"
@@ -108,8 +108,12 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
     chpasswd:
       list: |
         ${var.username}:${var.temp_user_password}
+    timezone: ${var.timezone}
+    packages:
+      - qemu-guest-agent
     runcmd:
       - timedatectl set-timezone ${var.timezone}
+      - systemctl enable qemu-guest-agent --now
       - echo "done" > /tmp/cloud-config.done
     EOF
 

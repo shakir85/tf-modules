@@ -1,0 +1,22 @@
+#cloud-config
+hostname: ${hostname}
+write_files:
+  - path: /etc/hosts
+    content: |
+      127.0.0.1 ${hostname}
+users:
+  - name: default
+    lock_passwd: true
+    groups: [sudo]
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ${ssh_key}
+    sudo: ALL=(ALL) NOPASSWD:ALL
+ssh_pwauth: false
+timezone: ${timezone}
+packages:
+  - qemu-guest-agent
+runcmd:
+  - timedatectl set-timezone ${timezone}
+  - systemctl enable qemu-guest-agent --now
+  - echo "done" > /tmp/cloud-config.done

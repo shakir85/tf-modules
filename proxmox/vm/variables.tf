@@ -25,17 +25,6 @@ variable "tags" {
   description = "List of strings for tags. For example: ['terraform', 'ubuntu']."
 }
 
-variable "username" {
-  type        = string
-  description = "Default user. This will be a sudo user and have SSH login access."
-}
-
-variable "temp_user_password" {
-  default     = "changeme"
-  type        = string
-  description = "Temorary login password. Upon the first login, a prompt to change the password will be presented."
-}
-
 variable "cores" {
   default     = 1
   type        = number

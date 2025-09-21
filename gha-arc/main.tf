@@ -17,7 +17,7 @@ resource "kubernetes_secret_v1" "controller_manager" {
   data = {
     github_app_id              = var.github_app_id
     github_app_installation_id = var.github_app_installation_id
-    github_app_private_key     = file(var.github_app_private_key)
+    github_app_private_key     = var.github_app_private_key
   }
 
   type = "Opaque"

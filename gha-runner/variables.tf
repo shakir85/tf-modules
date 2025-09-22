@@ -23,3 +23,9 @@ variable "org" {
   description = "The GitHub organization or user that owns the target repository"
   type        = string
 }
+
+variable "runner_labels" {
+  description = "Labels to apply to the GHA runners (not K8s pod labels)"
+  type        = list(string)
+  default     = []
+}

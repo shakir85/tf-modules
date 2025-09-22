@@ -18,6 +18,10 @@ spec:
     spec:
       repository: {{ .Values.repository }}
       serviceAccountName: {{ .Values.name }}-sa
+      labels:
+{{- range .Values.runnerLabels }}
+        - {{ . | quote }}
+{{- end }}
       containers:
       - name: runner
         image: {{ .Values.image }}

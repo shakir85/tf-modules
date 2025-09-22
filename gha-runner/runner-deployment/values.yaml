@@ -15,3 +15,6 @@ labels: {}
 
 # -- Labels for the runner pods
 podLabels: {}
+
+# -- GHA runner labels (not K8s pod labels!)
+runnerLabels: []

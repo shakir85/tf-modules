@@ -70,6 +70,12 @@ variable "network_interface" {
   description = "Default node's network device bridge. Default value: `vmbr0`."
 }
 
+variable "mac_address" {
+  type        = string
+  default     = null
+  description = "Unicast MAC address of the network interface. Helpful when you want to set a static DHCP reservation in your network. If not set, Proxmox will generate a random MAC address."
+}
+
 variable "cloud_image_info" {
   type        = list(string)
   description = <<EOF

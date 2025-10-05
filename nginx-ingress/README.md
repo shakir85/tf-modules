@@ -6,16 +6,20 @@ Installs the NGINX Ingress Controller using the official Helm chart.
 This module:
 - Installs the controller as a DaemonSet.
 - Removes the `controller.service.port.https` value from values.yaml. TLS is terminated outside the ingress.
+- Sets the `controller.hostNetwork` and `controller.hostPort` : `false` to avoid binding to the host network and potential ports conflict.
+
 
 Usage:
 
-module "nginx\_ingress" {
+```hcl
+module "nginx_ingress" {
   source  = "./nginx-ingress"
   name    = "nginx-ingress"
   namespace = "ingress-nginx"
-  chart\_version = "4.10.0"
+  chart_version = "4.10.0"
   repository    = "https://kubernetes.github.io/ingress-nginx"
 }
+```
 
 ## Requirements
 

@@ -23,3 +23,15 @@ variable "org" {
   description = "The GitHub organization or user that owns the target repository"
   type        = string
 }
+
+variable "config_path" {
+  description = "Path to the Kubernetes config file"
+  type        = string
+  default     = null
+}
+
+variable "config_context" {
+  description = "Kubernetes context to use"
+  type        = string
+  default     = null
+}

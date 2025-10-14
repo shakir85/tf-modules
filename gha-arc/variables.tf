@@ -26,3 +26,15 @@ variable "shared_labels" {
     "app.kubernetes.io/managed-by" = "terraform"
   }
 }
+
+variable "config_path" {
+  description = "Path to the Kubernetes config file"
+  type        = string
+  default     = null
+}
+
+variable "config_context" {
+  description = "Kubernetes context to use"
+  type        = string
+  default     = null
+}

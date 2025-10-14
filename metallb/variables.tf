@@ -8,3 +8,15 @@ variable "create_namespace" {
   type        = bool
   description = "Whether to create the namespace"
 }
+
+variable "config_path" {
+  description = "Path to the Kubernetes config file"
+  type        = string
+  default     = null
+}
+
+variable "config_context" {
+  description = "Kubernetes context to use"
+  type        = string
+  default     = null
+}
